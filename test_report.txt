@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (54 ms)
+  ✕ renders learn react link (50 ms)
 
   ● renders learn react link
 
@@ -16,40 +16,9 @@ FAIL src/App.test.tsx
           [33mclass[39m=[32m"App"[39m
           [33mstyle[39m=[32m"background-color: rgb(107, 39, 55); min-height: 100vh; color: rgb(255, 255, 255);"[39m
         [36m>[39m
-          [36m<div[39m
-            [33mstyle[39m=[32m"text-align: center;"[39m
-          [36m>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mHome[0m
-            [36m</button>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mState 1[0m
-            [36m</button>[39m
-          [36m</div>[39m
           [36m<div>[39m
-            [36m<h1[39m
-              [33mstyle[39m=[32m"text-align: center;"[39m
-            [36m>[39m
-              [0m Home Page[0m
-            [36m</h1>[39m
-            [36m<img[39m
-              [33malt[39m=[32m"Branch"[39m
-              [33msrc[39m=[32m"branchTop.png"[39m
-              [33mstyle[39m=[32m"position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(90deg);"[39m
-            [36m/>[39m
-            [36m<img[39m
-              [33malt[39m=[32m"Branch"[39m
-              [33msrc[39m=[32m"branchTop.png"[39m
-              [33mstyle[39m=[32m"position: absolute; top: 0px; right: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(-90deg);"[39m
-            [36m/>[39m
             [36m<nav[39m
-              [33mstyle[39m=[32m"background-color: rgb(66, 107, 105); padding: 10px;"[39m
+              [33mstyle[39m=[32m"background-color: rgb(66, 107, 105); padding: 5px;"[39m
             [36m>[39m
               [36m<ul[39m
                 [33mstyle[39m=[32m"list-style-type: none; margin: 0px; padding: 0px; display: flex; justify-content: center;"[39m
@@ -92,37 +61,54 @@ FAIL src/App.test.tsx
                 [36m</li>[39m
               [36m</ul>[39m
             [36m</nav>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"container"[39m
-            [36m>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"section"[39m
+            [36m<div>[39m
+              [36m<h1[39m
+                [33mstyle[39m=[32m"text-align: center;"[39m
               [36m>[39m
-                [36m<h2[39m
-                  [33mclass[39m=[32m"header"[39m
-                [36m>[39m
-                  [0mBasic[0m
-                [36m</h2>[39m
-                [36m<p[39m
-                  [33mclass[39m=[32m"paragraph"[39m
-                [36m>[39m
-                  [0mThe basic assessment quiz is a short questionaire designed to gauge your knowledge and skills with simple and clear questions. With immediate feedback, you will know which career is right for you in a matter of a few minutes![0m
-                  [0m [0m
-                [36m</p>[39m
-              [36m</div>[39m
+                [0m Home Page[0m
+              [36m</h1>[39m
+              [36m<img[39m
+                [33malt[39m=[32m"Branch"[39m
+                [33msrc[39m=[32m"branchTop.png"[39m
+                [33mstyle[39m=[32m"position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(90deg);"[39m
+              [36m/>[39m
+              [36m<img[39m
+                [33malt[39m=[32m"Branch"[39m
+                [33msrc[39m=[32m"branchTop.png"[39m
+                [33mstyle[39m=[32m"position: absolute; top: 0px; right: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(-90deg);"[39m
+              [36m/>[39m
               [36m<div[39m
-                [33mclass[39m=[32m"section"[39m
+                [33mclass[39m=[32m"container"[39m
               [36m>[39m
-                [36m<h2[39m
-                  [33mclass[39m=[32m"header"[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"section"[39m
                 [36m>[39m
-                  [0mDetailed[0m
-                [36m</h2>[39m
-                [36m<p[39m
-                  [33mclass[39m=[32m"paragraph"[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"header"[39m
+                  [36m>[39m
+                    [0mBasic[0m
+                  [36m</h2>[39m
+                  [36m<p[39m
+                    [33mclass[39m=[32m"paragraph"[39m
+                  [36m>[39m
+                    [0mThe basic assessment quiz is a short questionaire designed to gauge your knowledge and skills with simple and clear questions. With immediate feedback, you will know which career is right for you in a matter of a few minutes![0m
+                    [0m [0m
+                  [36m</p>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"section"[39m
                 [36m>[39m
-                  [0mThe Detailed assessment will consist of more questions and will give you a more accurate and detailed assesment of what carreer you should choose.[0m
-                [36m</p>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"header"[39m
+                  [36m>[39m
+                    [0mDetailed[0m
+                  [36m</h2>[39m
+                  [36m<p[39m
+                    [33mclass[39m=[32m"paragraph"[39m
+                  [36m>[39m
+                    [0mThe Detailed assessment will consist of more questions and will give you a more accurate and detailed assesment of what carreer you should choose.[0m
+                  [36m</p>[39m
+                [36m</div>[39m
               [36m</div>[39m
             [36m</div>[39m
           [36m</div>[39m
@@ -173,23 +159,26 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
---------------------------------------------|---------|----------|---------|---------|-------------------
-File                                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
---------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                   |   37.14 |     37.5 |   21.42 |   37.14 |                   
- src                                        |   29.16 |       25 |   14.28 |   29.16 |                   
-  App.tsx                                   |   53.84 |       50 |      20 |   53.84 | 13,23-29,35-36    
-  index.tsx                                 |       0 |      100 |     100 |       0 | 7-19              
-  reportWebVitals.ts                        |       0 |        0 |       0 |       0 | 3-10              
- src/components/homePageComp                |     100 |      100 |     100 |     100 |                   
-  decriptionTable.tsx                       |     100 |      100 |     100 |     100 |                   
- src/components/homePageComp/navigation-bar |   44.44 |       50 |   16.66 |   44.44 |                   
-  navigationBar.tsx                         |   44.44 |       50 |   16.66 |   44.44 | 7,14-23           
---------------------------------------------|---------|----------|---------|---------|-------------------
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+All files                    |   37.77 |       25 |   26.66 |   37.77 |                   
+ src                         |   28.57 |    16.66 |      20 |   28.57 |                   
+  App.tsx                    |      60 |       50 |   33.33 |      60 | 12,21-27          
+  index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
+ src/components/homePageComp |   38.88 |    27.77 |   28.57 |   38.88 |                   
+  decriptionTable.tsx        |     100 |      100 |     100 |     100 |                   
+  navigationBar.tsx          |   31.25 |    27.77 |   16.66 |   31.25 | 12-20,29-38       
+ src/pages                   |   66.66 |      100 |   33.33 |   66.66 |                   
+  BasicQuestions.tsx         |      50 |      100 |       0 |      50 | 4                 
+  DetailedQuestions.tsx      |      50 |      100 |       0 |      50 | 5                 
+  Home.tsx                   |     100 |      100 |     100 |     100 |                   
+-----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.9 s
+Time:        2.768 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
