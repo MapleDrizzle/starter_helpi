@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (49 ms)
+  ✕ renders learn react link (51 ms)
 
   ● renders learn react link
 
@@ -61,54 +61,60 @@ FAIL src/App.test.tsx
                 [36m</li>[39m
               [36m</ul>[39m
             [36m</nav>[39m
-            [36m<div>[39m
-              [36m<h1[39m
-                [33mstyle[39m=[32m"text-align: center;"[39m
-              [36m>[39m
-                [0m Home Page[0m
-              [36m</h1>[39m
-              [36m<img[39m
-                [33malt[39m=[32m"Branch"[39m
-                [33msrc[39m=[32m"branchTop.png"[39m
-                [33mstyle[39m=[32m"position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(90deg);"[39m
-              [36m/>[39m
-              [36m<img[39m
-                [33malt[39m=[32m"Branch"[39m
-                [33msrc[39m=[32m"branchTop.png"[39m
-                [33mstyle[39m=[32m"position: absolute; top: 0px; right: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(-90deg);"[39m
-              [36m/>[39m
+          [36m</div>[39m
+          [36m<div>[39m
+            [36m<h1[39m
+              [33mstyle[39m=[32m"text-align: center;"[39m
+            [36m>[39m
+              [0m Home Page[0m
+            [36m</h1>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Branch"[39m
+              [33msrc[39m=[32m"branchTop.png"[39m
+              [33mstyle[39m=[32m"position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(90deg);"[39m
+            [36m/>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Branch"[39m
+              [33msrc[39m=[32m"branchTop.png"[39m
+              [33mstyle[39m=[32m"position: absolute; top: 0px; right: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(-90deg);"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"container"[39m
+            [36m>[39m
               [36m<div[39m
-                [33mclass[39m=[32m"container"[39m
+                [33mclass[39m=[32m"section"[39m
               [36m>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"section"[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"header"[39m
                 [36m>[39m
-                  [36m<h2[39m
-                    [33mclass[39m=[32m"header"[39m
-                  [36m>[39m
-                    [0mBasic[0m
-                  [36m</h2>[39m
-                  [36m<p[39m
-                    [33mclass[39m=[32m"paragraph"[39m
-                  [36m>[39m
-                    [0mThe basic assessment quiz is a short questionaire designed to gauge your knowledge and skills with simple and clear questions. With immediate feedback, you will know which career is right for you in a matter of a few minutes![0m
-                    [0m [0m
-                  [36m</p>[39m
-                [36m</div>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"section"[39m
+                  [0mBasic[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"paragraph"[39m
                 [36m>[39m
-                  [36m<h2[39m
-                    [33mclass[39m=[32m"header"[39m
-                  [36m>[39m
-                    [0mDetailed[0m
-                  [36m</h2>[39m
-                  [36m<p[39m
-                    [33mclass[39m=[32m"paragraph"[39m
-                  [36m>[39m
-                    [0mThe Detailed assessment will consist of more questions and will give you a more accurate and detailed assesment of what carreer you should choose.[0m
-                  [36m</p>[39m
-                [36m</div>[39m
+                  [0mThe basic assessment quiz is a short questionaire designed to gauge your knowledge and skills with simple and clear questions. With immediate feedback, you will know which career is right for you in a matter of a few minutes![0m
+                  [0m [0m
+                [36m</p>[39m
+                [36m<button>[39m
+                  [0m Start Basic Quiz[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"section"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"header"[39m
+                [36m>[39m
+                  [0mDetailed[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"paragraph"[39m
+                [36m>[39m
+                  [0mThe Detailed assessment will consist of more questions and will give you a more accurate and detailed assesment of what carreer you should choose.[0m
+                [36m</p>[39m
+                [36m<button>[39m
+                  [0m Start Detailed Quiz[0m
+                [36m</button>[39m
               [36m</div>[39m
             [36m</div>[39m
           [36m</div>[39m
@@ -162,23 +168,22 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |      25 |       20 |   18.18 |      25 |                   
- src                         |   28.57 |    16.66 |      20 |   28.57 |                   
-  App.tsx                    |      60 |       50 |   33.33 |      60 | 12,20-26          
+All files                    |   26.15 |    29.16 |   17.39 |   26.15 |                   
+ src                         |   37.03 |       30 |   33.33 |   37.03 |                   
+  App.tsx                    |    62.5 |       50 |      50 |    62.5 | 15,26-32,38-40    
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components/homePageComp |   38.88 |    27.77 |   28.57 |   38.88 |                   
-  decriptionTable.tsx        |     100 |      100 |     100 |     100 |                   
-  navigationBar.tsx          |   31.25 |    27.77 |   16.66 |   31.25 | 12-20,29-38       
- src/pages                   |   13.79 |        0 |      10 |   13.79 |                   
-  BasicQuestions.tsx         |       4 |        0 |       0 |       4 | 5-61              
-  DetailedQuestions.tsx      |      50 |      100 |       0 |      50 | 5                 
-  Home.tsx                   |     100 |      100 |     100 |     100 |                   
+ src/components/homePageComp |   42.85 |       50 |      20 |   42.85 |                   
+  navigationBar.tsx          |   42.85 |       50 |      20 |   42.85 | 16-25             
+ src/pages                   |    12.9 |        0 |    8.33 |    12.9 |                   
+  BasicQuestions.tsx         |       4 |        0 |       0 |       4 | 8-64              
+  DetailedQuestions.tsx      |      50 |      100 |       0 |      50 | 7                 
+  Home.tsx                   |      50 |      100 |   33.33 |      50 | 24-33             
 -----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.892 s
+Time:        2.917 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
