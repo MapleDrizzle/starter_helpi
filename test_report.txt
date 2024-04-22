@@ -2,23 +2,96 @@
 > starter_helpi@0.1.0 test
 > react-scripts test --coverage
 
+  console.error
+    Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+        at module.exports (/home/runner/work/starter_helpi/starter_helpi/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+        at HTMLCanvasElementImpl.getContext (/home/runner/work/starter_helpi/starter_helpi/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+        at HTMLCanvasElement.getContext (/home/runner/work/starter_helpi/starter_helpi/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+        at /home/runner/work/starter_helpi/starter_helpi/src/components/homePageComp/waves/waveComponents/canvas.tsx:14:37
+        at commitHookEffectListMount (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:23150:26)
+        at commitPassiveMountOnFiber (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:24931:11)
+        at commitPassiveMountEffects_complete (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:24891:9)
+        at commitPassiveMountEffects_begin (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:24878:7)
+        at commitPassiveMountEffects (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:24866:3)
+        at flushPassiveEffectsImpl (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:27039:3)
+        at flushPassiveEffects (/home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:26984:14)
+        at /home/runner/work/starter_helpi/starter_helpi/node_modules/react-dom/cjs/react-dom.development.js:26769:9
+        at flushActQueue (/home/runner/work/starter_helpi/starter_helpi/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/home/runner/work/starter_helpi/starter_helpi/node_modules/react/cjs/react.development.js:2582:11)
+        at /home/runner/work/starter_helpi/starter_helpi/node_modules/@testing-library/react/dist/act-compat.js:63:25
+        at renderRoot (/home/runner/work/starter_helpi/starter_helpi/node_modules/@testing-library/react/dist/pure.js:159:26)
+        at render (/home/runner/work/starter_helpi/starter_helpi/node_modules/@testing-library/react/dist/pure.js:246:10)
+        at Object.<anonymous> (/home/runner/work/starter_helpi/starter_helpi/src/App.test.tsx:6:9)
+        at Promise.then.completed (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/run.js:218:40)
+        at processTicksAndRejections (node:internal/process/task_queues:96:5)
+        at _runTest (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/run.js:66:9)
+        at run (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/home/runner/work/starter_helpi/starter_helpi/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/home/runner/work/starter_helpi/starter_helpi/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/home/runner/work/starter_helpi/starter_helpi/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/home/runner/work/starter_helpi/starter_helpi/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/home/runner/work/starter_helpi/starter_helpi/node_modules/jest-cli/build/cli/index.js:155:37) undefined
+
+      12 |
+      13 |   useEffect(() => {
+    > 14 |     const ctx = canvasRef?.current?.getContext('2d')
+         |                                     ^
+      15 |     if (ctx) setContext(ctx)
+      16 |   }, [])
+      17 |
+
+      at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+      at module.exports (node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+      at HTMLCanvasElementImpl.getContext (node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+      at HTMLCanvasElement.getContext (node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+      at src/components/homePageComp/waves/waveComponents/canvas.tsx:14:37
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26769:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:63:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:159:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:246:10)
+      at Object.<anonymous> (src/App.test.tsx:6:9)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
 FAIL src/App.test.tsx
-  ✕ renders learn react link (51 ms)
+  ✕ renders learn react link (80 ms)
 
   ● renders learn react link
 
     TestingLibraryElementError: Unable to find an element with the text: /learn react/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
     Ignored nodes: comments, script, style
-    [36m<body>[39m
+    [36m<body[39m
+      [33mstyle[39m=[32m"background-color: rgba(173, 216, 230, 0.88);"[39m
+    [36m>[39m
       [36m<div>[39m
         [36m<div[39m
           [33mclass[39m=[32m"App"[39m
-          [33mstyle[39m=[32m"background-color: rgb(107, 39, 55); min-height: 100vh; color: rgb(255, 255, 255);"[39m
+          [33mstyle[39m=[32m"background-color: rgb(246, 215, 176); min-height: 100vh; color: rgb(255, 255, 255);"[39m
         [36m>[39m
           [36m<div>[39m
             [36m<nav[39m
-              [33mstyle[39m=[32m"background-color: rgb(66, 107, 105); padding: 5px;"[39m
+              [33mstyle[39m=[32m"background-color: rgb(44, 111, 187); padding: 5px;"[39m
             [36m>[39m
               [36m<ul[39m
                 [33mstyle[39m=[32m"list-style-type: none; margin: 0px; padding: 0px; display: flex; justify-content: center;"[39m
@@ -66,18 +139,8 @@ FAIL src/App.test.tsx
             [36m<h1[39m
               [33mstyle[39m=[32m"text-align: center;"[39m
             [36m>[39m
-              [0m Home Page[0m
+              [0m Shore Path[0m
             [36m</h1>[39m
-            [36m<img[39m
-              [33malt[39m=[32m"Branch"[39m
-              [33msrc[39m=[32m"branchTop.png"[39m
-              [33mstyle[39m=[32m"position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(90deg);"[39m
-            [36m/>[39m
-            [36m<img[39m
-              [33malt[39m=[32m"Branch"[39m
-              [33msrc[39m=[32m"branchTop.png"[39m
-              [33mstyle[39m=[32m"position: absolute; top: 0px; right: 0px; width: 100px; height: 100px; z-index: 1; transform: rotate(-90deg);"[39m
-            [36m/>[39m
             [36m<div[39m
               [33mclass[39m=[32m"container"[39m
             [36m>[39m
@@ -85,17 +148,19 @@ FAIL src/App.test.tsx
                 [33mclass[39m=[32m"section"[39m
               [36m>[39m
                 [36m<h2[39m
-                  [33mclass[39m=[32m"header"[39m
+                  [33mclass[39m=[32m"basicHeader"[39m
                 [36m>[39m
                   [0mBasic[0m
                 [36m</h2>[39m
                 [36m<p[39m
-                  [33mclass[39m=[32m"paragraph"[39m
+                  [33mclass[39m=[32m"basicParagraph"[39m
                 [36m>[39m
                   [0mThe basic assessment quiz is a short questionaire designed to gauge your knowledge and skills with simple and clear questions. With immediate feedback, you will know which career is right for you in a matter of a few minutes![0m
                   [0m [0m
                 [36m</p>[39m
-                [36m<button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"rounded-button blue-gradient"[39m
+                [36m>[39m
                   [0m Start Basic Quiz[0m
                 [36m</button>[39m
               [36m</div>[39m
@@ -103,16 +168,18 @@ FAIL src/App.test.tsx
                 [33mclass[39m=[32m"section"[39m
               [36m>[39m
                 [36m<h2[39m
-                  [33mclass[39m=[32m"header"[39m
+                  [33mclass[39m=[32m"detailedHeader"[39m
                 [36m>[39m
                   [0mDetailed[0m
                 [36m</h2>[39m
                 [36m<p[39m
-                  [33mclass[39m=[32m"paragraph"[39m
+                  [33mclass[39m=[32m"detailedParagraph"[39m
                 [36m>[39m
                   [0mThe Detailed assessment will consist of more questions and will give you a more accurate and detailed assesment of what carreer you should choose.[0m
                 [36m</p>[39m
-                [36m<button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"rounded-button blue-gradient"[39m
+                [36m>[39m
                   [0m Start Detailed Quiz[0m
                 [36m</button>[39m
               [36m</div>[39m
@@ -143,6 +210,11 @@ FAIL src/App.test.tsx
               [36m</button>[39m
             [36m</form>[39m
           [36m</div>[39m
+          [36m<canvas[39m
+            [33mheight[39m=[32m"768"[39m
+            [33mid[39m=[32m"canvas"[39m
+            [33mwidth[39m=[32m"1024"[39m
+          [36m/>[39m
         [36m</div>[39m
       [36m</div>[39m
     [36m</body>[39m
@@ -165,25 +237,34 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
------------------------------|---------|----------|---------|---------|-------------------
-File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
------------------------------|---------|----------|---------|---------|-------------------
-All files                    |   26.15 |    29.16 |   17.39 |   26.15 |                   
- src                         |   37.03 |       30 |   33.33 |   37.03 |                   
-  App.tsx                    |    62.5 |       50 |      50 |    62.5 | 15,26-32,38-40    
-  index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
-  reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components/homePageComp |   42.85 |       50 |      20 |   42.85 |                   
-  navigationBar.tsx          |   42.85 |       50 |      20 |   42.85 | 16-25             
- src/pages                   |    12.9 |        0 |    8.33 |    12.9 |                   
-  BasicQuestions.tsx         |       4 |        0 |       0 |       4 | 8-64              
-  DetailedQuestions.tsx      |      50 |      100 |       0 |      50 | 7                 
-  Home.tsx                   |      50 |      100 |   33.33 |      50 | 24-33             
------------------------------|---------|----------|---------|---------|-------------------
+--------------------------------------------------|---------|----------|---------|---------|-------------------
+File                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------------------------------|---------|----------|---------|---------|-------------------
+All files                                         |   44.85 |    28.12 |   39.47 |   45.86 |                   
+ src                                              |   37.03 |       30 |   33.33 |   37.03 |                   
+  App.tsx                                         |    62.5 |       50 |      50 |    62.5 | 16,27-33,39-41    
+  index.tsx                                       |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts                              |       0 |        0 |       0 |       0 | 3-10              
+ src/components/homePageComp/navigation-bar       |   42.85 |       50 |      20 |   42.85 |                   
+  navigationBar.tsx                               |   42.85 |       50 |      20 |   42.85 | 16-25             
+ src/components/homePageComp/waves/entity         |   16.66 |        0 |   33.33 |   17.64 |                   
+  WaveEntity.ts                                   |   16.66 |        0 |   33.33 |   17.64 | 11,20-35          
+ src/components/homePageComp/waves/hooks          |     100 |      100 |     100 |     100 |                   
+  useCanvas.ts                                    |     100 |      100 |     100 |     100 |                   
+  useColor.ts                                     |     100 |      100 |     100 |     100 |                   
+  useResponsiveSize.ts                            |     100 |      100 |     100 |     100 |                   
+ src/components/homePageComp/waves/waveComponents |   61.29 |    33.33 |      60 |   65.51 |                   
+  canvas.tsx                                      |   88.88 |       50 |     100 |     100 | 15                
+  wave.tsx                                        |      50 |       25 |   33.33 |   52.38 | 21-32             
+ src/pages                                        |    12.9 |        0 |    8.33 |    12.9 |                   
+  BasicQuestions.tsx                              |       4 |        0 |       0 |       4 | 8-64              
+  DetailedQuestions.tsx                           |      50 |      100 |       0 |      50 | 7                 
+  Home.tsx                                        |      50 |      100 |   33.33 |      50 | 21-30             
+--------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.917 s
+Time:        3.108 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
