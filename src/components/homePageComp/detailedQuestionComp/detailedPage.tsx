@@ -74,13 +74,13 @@ const DetailedPage = () => {
 
 return(
     <div className = 'DetailedPage'>
-        <h1> Detailed Quiz</h1>
+        <h1 className = "detailedHeader"> Detailed Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ?(
         <button className="Start" onClick={startQuiz}>
             Start
         </button>
         ) : null}
-        {!gameOver ? <p className="score"> Score:</p> : null}
+        {!gameOver ? <p className="score"> Score: {score} </p> : null}
         {loading && <p>Loading Questions...</p>}
         <p> Score: {score}</p>
         {!loading && !gameOver && (
