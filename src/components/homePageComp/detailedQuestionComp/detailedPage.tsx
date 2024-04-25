@@ -41,24 +41,25 @@ const DetailedPage = () => {
         setLoading(false);
     };
 
-    const checkAnswer = (e: React.MouseEvent <HTMLButtonElement>) => {
-        if (!gameOver){
-            //user answer
+    const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (!gameOver) {
+            // user answer
             const answer = e.currentTarget.value;
-            //check if correct
+            // check if correct
             const correct = questions[number].correct_answer === answer;
-            //add score if annswer is correct
+            // add score if answer is correct
             if (correct) setScore(prev => prev + 1);
-            // save answer in the array for useer answers
+            // save answer in the array for user answers
             const answerObject = {
                 question: questions[number].question,
                 answer,
                 correct,
-                correctAnswer : questions[number].correct_answer,
+                correctAnswer: questions[number].correct_answer,
             };
-            setUserAnswers((prev) => [...prev, answerObject]);
+            setUserAnswers(prev => [...prev.slice(0, number), answerObject, ...prev.slice(number + 1)]);
         }
     }
+    
 
     const nextQuestion = () => {
         //move onto next question unless last
@@ -71,6 +72,16 @@ const DetailedPage = () => {
             setNumber(nextQuestion);
         }
     }
+
+const prevQuestion = () => {
+    // Move to the previous question unless it's the first question
+    const prevQuestion = number - 1;
+
+    if (prevQuestion >= 0) {
+        setNumber(prevQuestion);
+    }
+}
+
 
 return(
     <div className = 'DetailedPage'>
@@ -94,14 +105,21 @@ return(
 
         />
         )}
-        {!gameOver &&
-         !loading &&
-         userAnswers.length === number + 1 &&
-         number !== TOTAL_QUESTIONS - 1 ? (
-            <button className="next" onClick={nextQuestion}>
-            Next Question
-            </button>
-        ) : null}
+    {!gameOver &&
+                !loading &&
+                number !== 0 && (
+                    <button className="prev" onClick={prevQuestion}>
+                        Previous Question
+                    </button>
+                )}
+            {!gameOver &&
+                !loading &&
+                userAnswers.length > number && // Show if user has answered the current question
+                number !== TOTAL_QUESTIONS - 1 && (
+                    <button className="next" onClick={nextQuestion}>
+                        Next Question
+                    </button>
+                )}
         </div>
     );
 }

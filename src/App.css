@@ -169,3 +169,61 @@ h2 {
 .blue-gradient {
     background: linear-gradient(to right, #82c0d5, #ffffff); /* Adjust color codes as needed */
 }
+
+
+
+/*detailed Page css */
+
+.detailedHeader {
+    font-family: Fascinate Inline, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: transparent;
+    background-image: linear-gradient(180deg, #fff, #87f1ff);
+    background-size: 100%;
+    background-clip: text;
+    --webkit-background-clip: text;
+    --webkit-text-fill-color: transparent;
+    --moz-background-clip: text;
+    --moz-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
+    font-size: 70px;
+    text-align: center;
+
+}
+
+.Start {
+    background: linear-gradient(to right, #82c0d5, #ffffff);
+    border-radius: 20px; /* Adjust the value to change button roundness */
+    border: none;
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Start:hover {
+    color: rgb(62, 124, 160);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.next {
+    background: linear-gradient(to right, #82c0d5, #ffffff);
+    border-radius: 20px; /* Adjust the value to change button roundness */
+    border: none;
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.next:hover {
+    color: rgb(62, 124, 160);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 110%;
+    font-weight: bold;
+}
