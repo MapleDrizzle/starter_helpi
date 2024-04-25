@@ -74,7 +74,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (79 ms)
+  ✕ renders learn react link (87 ms)
 
   ● renders learn react link
 
@@ -184,6 +184,21 @@ FAIL src/App.test.tsx
               [36m</div>[39m
             [36m</div>[39m
           [36m</div>[39m
+          [36m<img[39m
+            [33malt[39m=[32m"ShorePath Logo"[39m
+            [33mclass[39m=[32m"logo"[39m
+            [33msrc[39m=[32m"shorepathlogo.png"[39m
+          [36m/>[39m
+          [36m<img[39m
+            [33malt[39m=[32m"Starfish"[39m
+            [33mclass[39m=[32m"starfish"[39m
+            [33msrc[39m=[32m"starfish.png"[39m
+          [36m/>[39m
+          [36m<img[39m
+            [33malt[39m=[32m"Shell"[39m
+            [33mclass[39m=[32m"shell"[39m
+            [33msrc[39m=[32m"shell.png"[39m
+          [36m/>[39m
           [36m<div[39m
             [33mclass[39m=[32m"footer"[39m
           [36m>[39m
@@ -241,9 +256,9 @@ FAIL src/App.test.tsx
 --------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                         |   48.46 |    31.03 |    37.5 |    50.4 |                   
+All files                                         |   44.68 |    29.03 |   31.91 |   47.01 |                   
  src                                              |   37.03 |       30 |   33.33 |   37.03 |                   
-  App.tsx                                         |    62.5 |       50 |      50 |    62.5 | 16,27-33,39-41    
+  App.tsx                                         |    62.5 |       50 |      50 |    62.5 | 18,29-35,41-43    
   index.tsx                                       |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts                              |       0 |        0 |       0 |       0 | 3-10              
  src/components/homePageComp/navigation-bar       |      40 |       50 |   16.66 |      40 |                   
@@ -259,15 +274,15 @@ All files                                         |   48.46 |    31.03 |    37.5
   wave.tsx                                        |      50 |       25 |   33.33 |   52.38 | 21-32             
  src/components/progress-bar                      |   33.33 |        0 |       0 |   33.33 |                   
   progressBar.tsx                                 |   33.33 |        0 |       0 |   33.33 | 10-12             
- src/pages                                        |   21.05 |        0 |    8.33 |   23.52 |                   
-  BasicQuestions.tsx                              |    7.69 |        0 |       0 |    9.09 | 11-85             
-  DetailedQuestions.tsx                           |      50 |      100 |       0 |      50 | 7                 
+ src/pages                                        |   13.33 |        0 |    5.26 |   15.38 |                   
+  BasicQuestions.tsx                              |    7.69 |        0 |       0 |    9.09 | 11-92             
+  DetailedQuestions.tsx                           |    7.69 |        0 |       0 |    9.09 | 10-92             
   Home.tsx                                        |      50 |      100 |   33.33 |      50 | 23-32             
 --------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.028 s
+Time:        3.201 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
