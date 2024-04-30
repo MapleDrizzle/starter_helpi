@@ -149,6 +149,10 @@ h2 {
     width: 100%;
     background-color: #2c6fbb;
 }
+#api {
+    color: white;
+    font-family: tahoma;
+}
 /* All for the buttons on home Page */
 
 .rounded-button {

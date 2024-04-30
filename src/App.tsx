@@ -67,7 +67,7 @@ function App() {
             <div className = "footer">
             <div>
                 <Form>
-                    <Form.Label>API Key:</Form.Label>
+                    <Form.Label id = "api">API Key:</Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="Insert API Key Here"
