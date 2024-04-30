@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/starter_helpi/static/css/main.dc452f6b.css",
-    "main.js": "/starter_helpi/static/js/main.ff95cec0.js",
+    "main.js": "/starter_helpi/static/js/main.a7b9f52e.js",
     "static/js/453.bad6c33a.chunk.js": "/starter_helpi/static/js/453.bad6c33a.chunk.js",
     "static/media/shorepathlogo.png": "/starter_helpi/static/media/shorepathlogo.f766dd652278637dd9ed.png",
     "static/media/shell.png": "/starter_helpi/static/media/shell.1c5e2f2a749176079e51.png",
     "static/media/starfish.png": "/starter_helpi/static/media/starfish.7c6dba49af0ef5844e5b.png",
     "index.html": "/starter_helpi/index.html",
     "main.dc452f6b.css.map": "/starter_helpi/static/css/main.dc452f6b.css.map",
-    "main.ff95cec0.js.map": "/starter_helpi/static/js/main.ff95cec0.js.map",
+    "main.a7b9f52e.js.map": "/starter_helpi/static/js/main.a7b9f52e.js.map",
     "453.bad6c33a.chunk.js.map": "/starter_helpi/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dc452f6b.css",
-    "static/js/main.ff95cec0.js"
+    "static/js/main.a7b9f52e.js"
   ]
 }
