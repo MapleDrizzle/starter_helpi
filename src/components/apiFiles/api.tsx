@@ -18,7 +18,7 @@ export async function systemRole(questions: string[]): Promise<string[]> {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' //where our api key would go
+            'Authorization': 'Bearer {key}' //where our api key would go
         },
         body: JSON.stringify({
             model: 'text-davinci-003', // Your preferred GPT model
@@ -44,7 +44,7 @@ export async function userRole(questions: string[], answers: string[]): Promise<
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer {PUT OUR API KEY BUT CANT COMMIT IT'
+            'Authorization': 'Bearer {key}'
         },
         body: JSON.stringify({
             model: 'gpt-4-turbo', // Your preferred GPT model
