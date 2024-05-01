@@ -74,7 +74,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (85 ms)
+  ✕ renders learn react link (79 ms)
 
   ● renders learn react link
 
@@ -253,10 +253,22 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
 --------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                         |    33.5 |    16.66 |   27.27 |   35.16 |                   
+All files                                         |   32.32 |    15.51 |   26.31 |   33.86 |                   
  src                                              |   37.03 |       30 |   33.33 |   37.03 |                   
   App.tsx                                         |    62.5 |       50 |      50 |    62.5 | 18,29-35,41-43    
   index.tsx                                       |       0 |      100 |     100 |       0 | 7-19              
@@ -276,8 +288,8 @@ All files                                         |    33.5 |    16.66 |   27.27
   wave.tsx                                        |      50 |       25 |   33.33 |   52.38 | 21-32             
  src/components/progress-bar                      |   33.33 |        0 |       0 |   33.33 |                   
   progressBar.tsx                                 |   33.33 |        0 |       0 |   33.33 | 10-12             
- src/pages                                        |    7.81 |        0 |    4.76 |    8.19 |                   
-  BasicQuestions.tsx                              |    4.16 |        0 |       0 |    4.34 | 10-80             
+ src/pages                                        |    7.04 |        0 |    4.34 |    7.35 |                   
+  BasicQuestions.tsx                              |    3.22 |        0 |       0 |    3.33 | 10-86             
   DetailedQuestions.tsx                           |    3.03 |        0 |       0 |    3.22 | 24-109            
   DetailedResults.tsx                             |   33.33 |      100 |       0 |   33.33 | 8-13              
   Home.tsx                                        |      50 |      100 |   33.33 |      50 | 23-32             
@@ -285,17 +297,5 @@ All files                                         |    33.5 |    16.66 |   27.27
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.307 s
+Time:        3.32 s
 Ran all test suites.
-[0;33mOne of your dependencies, babel-preset-react-app, is importing the
-"@babel/plugin-proposal-private-property-in-object" package without
-declaring it in its dependencies. This is currently working because
-"@babel/plugin-proposal-private-property-in-object" is already in your
-node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
-
-babel-preset-react-app is part of the create-react-app project, [1mwhich
-is not maintianed anymore[0;33m. It is thus unlikely that this bug will
-ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
-your devDependencies to work around this error. This will make this message
-go away.[0m
-  
