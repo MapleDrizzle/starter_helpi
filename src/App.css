@@ -28,6 +28,15 @@
     height: auto;
     border-radius: 50%;
 }
+#github1 {
+    position: absolute;
+    top: 265px;
+    left: 625px;
+    width: 50px;
+    height: auto;
+    z-index: 1;
+    border-radius: 50%;
+}
 
 .starfish {
     position: absolute;

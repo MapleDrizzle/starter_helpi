@@ -1,4 +1,6 @@
 import React from "react";
+import starfish from "../images/homePageImages/starfish.png";
+import shell from "../images/homePageImages/shell.png";
 
 interface HomeProp {
     handlePage: (page: string) => void;
@@ -7,6 +9,8 @@ interface HomeProp {
 const home: React.FC<HomeProp> = ({handlePage}) => {
     return (
     <div>
+        <img src={starfish} alt="Starfish" className="starfish" />
+        <img src={shell} alt="Shell" className="shell" />
         <div className="bigBox">
         <h1>ShorePath</h1>
         <h2>In the ocean of opportunities find which career suits you best</h2>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import DetailedResults from './DetailedResults';
 import {userRole} from '../components/apiFiles/api'
+import starfish from "../images/homePageImages/starfish.png";
+import shell from "../images/homePageImages/shell.png";
 
 interface DetailedProp {
     handlePage: (page: string) => void;
@@ -99,6 +101,8 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
 
     return (
         <div className="basicForm">
+            <img src={starfish} alt="Starfish" className="starfish" />
+            <img src={shell} alt="Shell" className="shell" />
             <form>
                 <h1>Detailed Quiz</h1>
                 <p>{questions[currentQuestionIndex]}</p>

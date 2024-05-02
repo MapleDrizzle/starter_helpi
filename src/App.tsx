@@ -3,10 +3,9 @@ import "./App.css";
 import { Button, Form } from "react-bootstrap";
 import NavigationBar from "./components/homePageComp/navigation-bar/navigationBar";
 import shorepathlogo from "./images/homePageImages/shorepathlogo.png";
-import starfish from "./images/homePageImages/starfish.png";
-import shell from "./images/homePageImages/shell.png";
 import DetailedQuestions from './pages/DetailedQuestions';
 import BasicQuestions from './pages/BasicQuestions';
+import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Canvas from "./components/homePageComp/waves/waveComponents/canvas";
 
@@ -22,8 +21,7 @@ function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [currPg, setCurrPg] = useState<string>("Home"); // switches pages
 
-    //const [activeTab, setActiveTab] = useState<string>('Home'); // bolds current page
-    const handlePage = (page: string) => {
+    const handleTabChange = (page: string) => {
         setCurrPg(page);
     }
 
@@ -41,12 +39,14 @@ function App() {
     const updatePageState = () => {
         switch (currPg) {
             case 'Basic':
-                return <BasicQuestions handlePage={handlePage} />; // switches to Basic 
+                return <BasicQuestions handlePage={handleTabChange} />; // switches to Basic 
             case 'Detailed':
-                return <DetailedQuestions handlePage={handlePage} />; // switches to Detailed 
+                return <DetailedQuestions handlePage={handleTabChange} />; // switches to Detailed 
+            case 'Contact':
+                return <Contact handlePage={handleTabChange} />; // switches to Contact 
             case 'Home':
             default:
-                return <Home handlePage={handlePage} />; // switches to Home 
+                return <Home handlePage={handleTabChange} />; // switches to Home 
         }
     }
 
@@ -65,8 +65,6 @@ function App() {
             {updatePageState()}
             {/*adds the ShorePath Logo*/}
             <img src={shorepathlogo} alt="ShorePath Logo" className="logo" />
-            <img src={starfish} alt="Starfish" className="starfish" />
-            <img src={shell} alt="Shell" className="shell" />
             <div className = "footer">
             <div>
                 <Form>
