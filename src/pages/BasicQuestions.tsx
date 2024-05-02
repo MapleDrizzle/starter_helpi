@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import { Button } from "react-bootstrap";
-import starfish from "../images/homePageImages/starfish.png";
-import shell from "../images/homePageImages/shell.png";
 
 interface BasicProps {
   handlePage: (page: string) => void;
@@ -72,8 +70,6 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
 
   return (
     <div className="basicForm">
-        <img src={starfish} alt="Starfish" className="starfish" />
-        <img src={shell} alt="Shell" className="shell" />
       <form>
         <h1>Basic Quiz</h1>
         {questions[currentPage].map((questionObj, questionIndex) => (
