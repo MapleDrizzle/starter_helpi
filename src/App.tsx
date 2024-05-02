@@ -3,10 +3,9 @@ import "./App.css";
 import { Button, Form } from "react-bootstrap";
 import NavigationBar from "./components/homePageComp/navigation-bar/navigationBar";
 import shorepathlogo from "./images/homePageImages/shorepathlogo.png";
-import starfish from "./images/homePageImages/starfish.png";
-import shell from "./images/homePageImages/shell.png";
 import DetailedQuestions from './pages/DetailedQuestions';
 import BasicQuestions from './pages/BasicQuestions';
+import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Canvas from "./components/homePageComp/waves/waveComponents/canvas";
 
@@ -21,8 +20,10 @@ if (prevKey !== null) {
 function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [currPg, setCurrPg] = useState<string>("Home"); // switches pages
-    //const [activeTab, setActiveTab] = useState<string>('Home'); // bolds current page
 
+    const handleTabChange = (page: string) => {
+        setCurrPg(page);
+    }
 
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
@@ -38,12 +39,14 @@ function App() {
     const updatePageState = () => {
         switch (currPg) {
             case 'Basic':
-                return <BasicQuestions handlePage={setCurrPg} />; // switches to Basic 
+                return <BasicQuestions handlePage={handleTabChange} />; // switches to Basic 
             case 'Detailed':
-                return <DetailedQuestions handlePage={setCurrPg} />; // switches to Detailed 
+                return <DetailedQuestions handlePage={handleTabChange} />; // switches to Detailed 
+            case 'Contact':
+                return <Contact handlePage={handleTabChange} />; // switches to Contact 
             case 'Home':
             default:
-                return <Home handlePage={setCurrPg} />; // switches to Home 
+                return <Home handlePage={handleTabChange} />; // switches to Home 
         }
     }
 
@@ -58,22 +61,19 @@ function App() {
             }}
         >
             {/* Navigation Bar*/}
-            <NavigationBar handlePage={setCurrPg}/>
+            <NavigationBar activeTab={currPg} handlePage={setCurrPg}/>
             {updatePageState()}
             {/*adds the ShorePath Logo*/}
             <img src={shorepathlogo} alt="ShorePath Logo" className="logo" />
-            <img src={starfish} alt="Starfish" className="starfish" />
-            <img src={shell} alt="Shell" className="shell" />
             <div className = "footer">
             <div>
                 <Form>
-                    <Form.Label>API Key:</Form.Label>
-                    <Form.Control
+                    <Form.Label id = "api">API Key:</Form.Label>
+                    <Form.Control id = "input"
                         type="password"
                         placeholder="Insert API Key Here"
                         onChange={changeKey}
                     ></Form.Control>
-                    <br></br>
                     <Button className="Submit-Button" onClick={handleSubmit}>
                         Submit
                     </Button>
