@@ -19,6 +19,15 @@
     color: #000;
 }
 
+.ShorePath {
+    color: #2930b1;
+    font-family: Tahoma;
+    position: absolute;
+    font-size:150%;
+    top: 35px;
+    left: 90px;
+}
+
 /*Images Styling*/
 .logo {
     position: absolute;

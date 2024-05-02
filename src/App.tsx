@@ -52,7 +52,6 @@ function App() {
 
     return (
         <div
-        
             className="App"
             style={{
                 backgroundColor: "#f6d7b0",
@@ -60,6 +59,7 @@ function App() {
                 color: "#fff"
             }}
         >
+            <div className = "ShorePath">ShorePath</div>
             {/* Navigation Bar*/}
             <NavigationBar activeTab={currPg} handlePage={setCurrPg}/>
             {updatePageState()}

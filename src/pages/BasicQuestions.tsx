@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import { Button } from "react-bootstrap";
+import workTogether from "../images/homePageImages/workTogether.png";
+
 
 interface BasicProps {
   handlePage: (page: string) => void;
@@ -12,6 +14,10 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubmissionMessage, setShowSubmissionMessage] = useState(false);
 
+  const images = [
+    workTogether
+  ];
+  
   const questions = [
     [ { question: "I like working in a team", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }],
       [{ question: "I prefer working alone", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }],
@@ -63,6 +69,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     }
   };
 
+  const currentImage = images[currentPage];
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Form submitted with responses:", responses);
@@ -78,6 +86,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     <div className="basicForm">
       <form onSubmit={handleSubmit}>
         <h1>Basic Quiz</h1>
+        <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
         {questions[currentPage].map((questionObj, questionIndex) => (
           <div className="questions" key={questionIndex}>
             <p>{questionObj.question}</p>
