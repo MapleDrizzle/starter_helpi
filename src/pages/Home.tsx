@@ -1,6 +1,5 @@
 import React from "react";
 
-
 interface HomeProp {
     handlePage: (page: string) => void;
 }

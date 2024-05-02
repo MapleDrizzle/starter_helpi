@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-
-
 interface NavProp {
+  activeTab: string;
   handlePage: (page: string, tabname: string) => void;
 }
 
-const NavigationBar: React.FC<NavProp> = ({handlePage}) => {
-  const [activeTab, setActiveTab] = useState<string>('Home'); // State for the active tab
+const NavigationBar: React.FC<NavProp> = ({activeTab, handlePage}) => {
+  //const [activeTab, setActiveTab] = useState<string>('Home'); // State for the active tab
 
   // Function to handle tab change and set the active tab
   const handleTabChange = (page: string, tabname: string) => {
-    setActiveTab(tabname); // Update the active tab
+    //setActiveTab(tabname); // Update the active tab
     handlePage(page, tabname); // Call the parent handler
   };
 

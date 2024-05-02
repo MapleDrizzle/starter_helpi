@@ -21,8 +21,11 @@ if (prevKey !== null) {
 function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [currPg, setCurrPg] = useState<string>("Home"); // switches pages
-    //const [activeTab, setActiveTab] = useState<string>('Home'); // bolds current page
 
+    //const [activeTab, setActiveTab] = useState<string>('Home'); // bolds current page
+    const handlePage = (page: string) => {
+        setCurrPg(page);
+    }
 
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
@@ -38,12 +41,12 @@ function App() {
     const updatePageState = () => {
         switch (currPg) {
             case 'Basic':
-                return <BasicQuestions handlePage={setCurrPg} />; // switches to Basic 
+                return <BasicQuestions handlePage={handlePage} />; // switches to Basic 
             case 'Detailed':
-                return <DetailedQuestions handlePage={setCurrPg} />; // switches to Detailed 
+                return <DetailedQuestions handlePage={handlePage} />; // switches to Detailed 
             case 'Home':
             default:
-                return <Home handlePage={setCurrPg} />; // switches to Home 
+                return <Home handlePage={handlePage} />; // switches to Home 
         }
     }
 
@@ -58,7 +61,7 @@ function App() {
             }}
         >
             {/* Navigation Bar*/}
-            <NavigationBar handlePage={setCurrPg}/>
+            <NavigationBar activeTab={currPg} handlePage={setCurrPg}/>
             {updatePageState()}
             {/*adds the ShorePath Logo*/}
             <img src={shorepathlogo} alt="ShorePath Logo" className="logo" />
@@ -68,7 +71,7 @@ function App() {
             <div>
                 <Form>
                     <Form.Label id = "api">API Key:</Form.Label>
-                    <Form.Control
+                    <Form.Control id = "input"
                         type="password"
                         placeholder="Insert API Key Here"
                         onChange={changeKey}
