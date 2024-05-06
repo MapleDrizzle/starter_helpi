@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import { Button } from "react-bootstrap";
 import workTogether from "../images/homePageImages/workTogether.png";
-
+import alone from "../images/homePageImages/alone.png";
+import idea from "../images/homePageImages/idea.png";
+import help from "../images/homePageImages/help.png";
+import counsel from "../images/homePageImages/counsel.png";
+import organized from "../images/homePageImages/organized.png";
+import creative from "../images/homePageImages/creative.png";
+import good from "../images/homePageImages/good.png";
 
 interface BasicProps {
   handlePage: (page: string) => void;
@@ -15,7 +21,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [showSubmissionMessage, setShowSubmissionMessage] = useState(false);
 
   const images = [
-    workTogether
+    workTogether, alone, idea, help, counsel, organized, creative, good
   ];
   
   const questions = [

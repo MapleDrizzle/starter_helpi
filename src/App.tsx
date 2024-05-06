@@ -73,6 +73,7 @@ function App() {
                         type="password"
                         placeholder="Insert API Key Here"
                         onChange={changeKey}
+                        style={{ borderRadius: '20px', width: '250px', height: '25px', padding: '5px'}}
                     ></Form.Control>
                     <Button className="Submit-Button" onClick={handleSubmit}>
                         Submit
@@ -80,7 +81,9 @@ function App() {
                 </Form>
             </div>
             </div>
-            <Canvas />
+            <div id = "waves">
+                <Canvas />
+            </div>
         </div>
     );
 }
