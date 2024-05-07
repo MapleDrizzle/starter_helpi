@@ -44,7 +44,7 @@ export async function userRole(questions: string[], answers: string[]): Promise<
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer [api key goes here]'
+            'Authorization': 'Bearer {key}'
         },
         body: JSON.stringify({
             model: 'gpt-4-turbo', // Your preferred GPT model
