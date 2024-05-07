@@ -26,7 +26,7 @@ interface Responses {
 
 const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     //let quizLength = 10;
-    const questions = [
+    const questions: string[] = [
         "I am a very hands-on person.",
         "I work well under pressure.",
         "I am good at counseling people.",
@@ -39,7 +39,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         "What are your long-term career goals?"
     ];
     const [quizResults, setQuizResults] = useState<string | null>(null);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
     const [responses, setResponses] = useState<Responses>({
         question1: '',
         question2: '',
@@ -53,8 +53,9 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         question10: ''
     });
     //const [loading, setLoading] = useState<boolean>(false); // for the loading screen (in progress)
-    const [progress, setProgress] = useState(0);
-    const [showResults, setShowResults] = useState(false);
+    const [progress, setProgress] = useState<number>(0);
+    const [showResults, setShowResults] = useState<boolean>(false);
+    const [currentPage, setCurrentPage] = useState<number>(0);
 
     const nextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
@@ -64,6 +65,14 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         }
         //console.log(quizLength);
     };
+    const handlePrev = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(currentQuestionIndex - 1);
+            setCurrentPage(currentPage - 1);
+            setProgress(progress - (100 / questions.length - 1));
+        }
+      };
+        
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         
@@ -172,6 +181,11 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                             <p>Please provide a minimum of 30 characters.</p>
                         )}
                     </div>
+                )}
+                    {currentQuestionIndex !== questions.length - 1 && currentQuestionIndex !== 0 && (
+                    <button type="button" id="Next" onClick={handlePrev}>
+                        Previous
+                    </button>
                 )}
                 {currentQuestionIndex !== questions.length - 1 && (
                     <button type="button" id="Next" onClick={nextQuestion} disabled={isNextButtonDisabled()}>
