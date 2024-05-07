@@ -74,7 +74,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (79 ms)
+  ✕ renders learn react link (80 ms)
 
   ● renders learn react link
 
@@ -89,6 +89,11 @@ FAIL src/App.test.tsx
           [33mclass[39m=[32m"App"[39m
           [33mstyle[39m=[32m"background-color: rgb(246, 215, 176); min-height: 100vh; color: rgb(255, 255, 255);"[39m
         [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"ShorePath"[39m
+          [36m>[39m
+            [0mShorePath[0m
+          [36m</div>[39m
           [36m<div[39m
             [33mclass[39m=[32m"container"[39m
           [36m>[39m
@@ -216,6 +221,7 @@ FAIL src/App.test.tsx
                   [33mclass[39m=[32m"form-control"[39m
                   [33mid[39m=[32m"input"[39m
                   [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                  [33mstyle[39m=[32m"border-radius: 20px; width: 250px; height: 25px; padding: 5px;"[39m
                   [33mtype[39m=[32m"password"[39m
                 [36m/>[39m
                 [36m<button[39m
@@ -227,11 +233,15 @@ FAIL src/App.test.tsx
               [36m</form>[39m
             [36m</div>[39m
           [36m</div>[39m
-          [36m<canvas[39m
-            [33mheight[39m=[32m"768"[39m
-            [33mid[39m=[32m"canvas"[39m
-            [33mwidth[39m=[32m"1024"[39m
-          [36m/>[39m
+          [36m<div[39m
+            [33mid[39m=[32m"waves"[39m
+          [36m>[39m
+            [36m<canvas[39m
+              [33mheight[39m=[32m"768"[39m
+              [33mid[39m=[32m"canvas"[39m
+              [33mwidth[39m=[32m"1024"[39m
+            [36m/>[39m
+          [36m</div>[39m
         [36m</div>[39m
       [36m</div>[39m
     [36m</body>[39m
@@ -269,12 +279,13 @@ go away.[0m
 --------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                         |   31.86 |    15.25 |   24.59 |   33.33 |                   
+All files                                         |   31.75 |    15.25 |      25 |   33.16 |                   
  src                                              |   36.66 |    27.27 |   28.57 |   36.66 |                   
   App.tsx                                         |   57.89 |    42.85 |      40 |   57.89 | 17,25-36,42-46    
   index.tsx                                       |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts                              |       0 |        0 |       0 |       0 | 3-10              
  src/components/apiFiles                          |       0 |      100 |       0 |       0 |                   
+  Chat.tsx                                        |       0 |        0 |       0 |       0 |                   
   api.tsx                                         |       0 |      100 |       0 |       0 | 4-60              
  src/components/homePageComp/navigation-bar       |    37.5 |       50 |   16.66 |    37.5 |                   
   navigationBar.tsx                               |    37.5 |       50 |   16.66 |    37.5 | 12,20-29          
@@ -289,16 +300,16 @@ All files                                         |   31.86 |    15.25 |   24.59
   wave.tsx                                        |      50 |       25 |   33.33 |   52.38 | 21-32             
  src/components/progress-bar                      |   33.33 |        0 |       0 |   33.33 |                   
   progressBar.tsx                                 |   33.33 |        0 |       0 |   33.33 | 10-12             
- src/pages                                        |    7.89 |        0 |    3.84 |    8.21 |                   
-  BasicQuestions.tsx                              |    3.22 |        0 |       0 |    3.33 | 10-86             
-  BasicResults.tsx                                |       0 |      100 |       0 |       0 | 7-13              
-  Contact.tsx                                     |      50 |      100 |       0 |      50 | 10                
-  DetailedQuestions.tsx                           |    3.03 |        0 |       0 |    3.22 | 24-109            
-  DetailedResults.tsx                             |   33.33 |      100 |       0 |   33.33 | 8-13              
+ src/pages                                        |    9.75 |        0 |       4 |   10.12 |                   
+  BasicQuestions.tsx                              |    2.94 |        0 |       0 |    3.03 | 21-105            
+  BasicResults.tsx                                |   33.33 |      100 |       0 |   33.33 | 31-35             
+  Contact.tsx                                     |      50 |      100 |       0 |      50 | 11                
+  DetailedQuestions.tsx                           |     5.4 |        0 |       0 |    5.71 | 29-146            
+  DetailedResults.tsx                             |      50 |      100 |       0 |      50 | 8                 
   Home.tsx                                        |      50 |      100 |   33.33 |      50 | 26-35             
 --------------------------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.299 s
+Time:        3.47 s
 Ran all test suites.
