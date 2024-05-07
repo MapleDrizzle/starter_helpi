@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/starter_helpi/static/css/main.f7e34b06.css",
-    "main.js": "/starter_helpi/static/js/main.647fa501.js",
+    "main.js": "/starter_helpi/static/js/main.d8153a2d.js",
     "static/js/453.bad6c33a.chunk.js": "/starter_helpi/static/js/453.bad6c33a.chunk.js",
     "static/media/shorepathlogo.png": "/starter_helpi/static/media/shorepathlogo.f766dd652278637dd9ed.png",
     "static/media/pressure.png": "/starter_helpi/static/media/pressure.a0a401daa1c517abbeef.png",
@@ -20,11 +20,11 @@
     "static/media/alone.png": "/starter_helpi/static/media/alone.be453ea55b67bc87af9d.png",
     "index.html": "/starter_helpi/index.html",
     "main.f7e34b06.css.map": "/starter_helpi/static/css/main.f7e34b06.css.map",
-    "main.647fa501.js.map": "/starter_helpi/static/js/main.647fa501.js.map",
+    "main.d8153a2d.js.map": "/starter_helpi/static/js/main.d8153a2d.js.map",
     "453.bad6c33a.chunk.js.map": "/starter_helpi/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f7e34b06.css",
-    "static/js/main.647fa501.js"
+    "static/js/main.d8153a2d.js"
   ]
 }
