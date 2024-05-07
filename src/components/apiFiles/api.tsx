@@ -44,7 +44,7 @@ export async function userRole(questions: string[], answers: string[]): Promise<
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer {PUT OUR API KEY BUT CANT COMMIT IT'
+            'Authorization': 'Bearer [api key goes here]'
         },
         body: JSON.stringify({
             model: 'gpt-4-turbo', // Your preferred GPT model
@@ -56,6 +56,6 @@ export async function userRole(questions: string[], answers: string[]): Promise<
     const userData = await userResponse.json();
     // Extract generated results from GPT response
     const results = userData.choices[0].text.trim().split('\n');
-
+    console.log(results)
     return results;
 }

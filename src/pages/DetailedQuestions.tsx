@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import DetailedResults from './DetailedResults';
-import {userRole} from '../components/apiFiles/api'
+//import {userRole} from '../components/apiFiles/api'
+import OpenAI from "openai";
+
+// ADD IN API KEY AGAIN! Right down here vv
+const openai = new OpenAI({apiKey: "", dangerouslyAllowBrowser: true});
 
 interface DetailedProp {
     handlePage: (page: string) => void;
@@ -21,6 +25,7 @@ interface Responses {
 }
 
 const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
+    //let quizLength = 10;
     const questions = [
         "I am a very hands-on person.",
         "I work well under pressure.",
@@ -33,8 +38,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         "How do you prioritize tasks and manage your time effectively?",
         "What are your long-term career goals?"
     ];
-
-    const [quizResults, setQuizResults] = useState<string[]>([]);
+    const [quizResults, setQuizResults] = useState<string | null>(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [responses, setResponses] = useState<Responses>({
         question1: '',
@@ -48,6 +52,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         question9: '',
         question10: ''
     });
+    //const [loading, setLoading] = useState<boolean>(false); // for the loading screen (in progress)
     const [progress, setProgress] = useState(0);
     const [showResults, setShowResults] = useState(false);
 
@@ -55,10 +60,13 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setProgress(progress + (100 / questions.length));
+            //quizLength = quizLength - 1;
         }
+        //console.log(quizLength);
     };
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        
         const { name, value } = event.target;
         setResponses((prevResponses) => ({
             ...prevResponses,
@@ -85,7 +93,21 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     };
 
     const handleSubmit = async () => {
-        try {
+        //setLoading(true);
+        //quizLength = quizLength - 1;
+        let answerJson = JSON.stringify(responses);
+        answerJson = "What career should I have given these questions and my corresponding answers?" + JSON.stringify(questions) + answerJson;
+        console.log(answerJson);
+        const chatResponse = await openai.chat.completions.create(
+            {messages: [ //edit system role to edit the output it gives you
+                {role: "system", content: "You are a career advisor. You will return a concrete list of career options given a list of questions and corresponding record object with question answer key value pairs. Only return responses, no questions."}, 
+                {role: "user", content: answerJson}], model: "gpt-4"})
+        setQuizResults(chatResponse.choices[0].message.content);
+        setShowResults(true);
+        //setLoading(false); 
+        console.log(chatResponse.choices[0].message.content);
+        console.log("Done");
+        /*try {
             const results = await userRole(
                 Object.values(responses),
                 Object.keys(responses)
@@ -95,8 +117,23 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         } catch (error) {
             console.error("Error fetching quiz results:", error);
         }
+        */
     };
-
+    /*
+    LOADING SCREEN FUNCTION (doesn't work)
+    const loadingScreen = () => {
+        if(quizLength === 0) {
+            if(loading && !showResults) {
+                <h1>Loading...</h1>
+            } else {
+                <DetailedResults quizResults={quizResults}/>
+            }
+        }
+        else {
+            return "";
+        }
+    }
+    */
     return (
         <div className="basicForm">
             <form>
@@ -110,8 +147,8 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                                     <input
                                         type="radio"
                                         name={`question${currentQuestionIndex + 1}`}
-                                        value={index + 1}
-                                        checked={responses[`question${currentQuestionIndex + 1}` as keyof Responses] === `${index + 1}`}
+                                        value={label}
+                                        checked={responses[`question${currentQuestionIndex + 1}` as keyof Responses] === `${label}`}
                                         onChange={handleRadioChange}
                                     />
                                     <span className="custom-radio"></span>
@@ -148,7 +185,9 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 )}
                 {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
             </form>
-            {showResults && <DetailedResults quizResults={quizResults} />}
+            
+            {/*quizLength === 0 ? (loading && !showResults ? <h1>Loading...</h1> : <DetailedResults quizResults={quizResults}/>) : ""*/}
+            {showResults && <DetailedResults quizResults={quizResults}/>}
         </div>
     );
 };

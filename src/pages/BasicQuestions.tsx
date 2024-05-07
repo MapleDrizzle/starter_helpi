@@ -9,6 +9,9 @@ import counsel from "../images/homePageImages/counsel.png";
 import organized from "../images/homePageImages/organized.png";
 import creative from "../images/homePageImages/creative.png";
 import good from "../images/homePageImages/good.png";
+import handson from "../images/homePageImages/handson.png";
+import pressure from "../images/homePageImages/pressure.png";
+import BasicResults from "./BasicResults";
 
 interface BasicProps {
   handlePage: (page: string) => void;
@@ -21,7 +24,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [showSubmissionMessage, setShowSubmissionMessage] = useState(false);
 
   const images = [
-    workTogether, alone, idea, help, counsel, organized, creative, good
+    workTogether, alone, idea, help, counsel, organized, creative, good, handson, pressure
   ];
   
   const questions = [
@@ -47,6 +50,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
           [  { question: "I excel in organizing and planning tasks or projects", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }],];
         
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(responses);
     const { name, value } = event.target;
     setResponses((prevResponses) => ({
       ...prevResponses,
@@ -131,6 +135,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       {showSubmissionMessage && (
         <div className="submission-message">
           <h2>Quiz submitted successfully!</h2>
+          <BasicResults responses={responses} questions={questions} formData={{}} />
           <Button onClick={handleCloseMessage} id = "Next">Close</Button>
         </div>
       )}
