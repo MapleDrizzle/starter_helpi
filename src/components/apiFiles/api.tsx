@@ -18,7 +18,7 @@ export async function systemRole(questions: string[]): Promise<string[]> {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' //where our api key would go
+            'Authorization': 'Bearer {key}' //where our api key would go
         },
         body: JSON.stringify({
             model: 'text-davinci-003', // Your preferred GPT model
