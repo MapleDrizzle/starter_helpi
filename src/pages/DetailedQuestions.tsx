@@ -3,6 +3,7 @@ import ProgressBar from "../components/progress-bar/progressBar";
 import DetailedResults from './DetailedResults';
 import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
+import { Alert } from "react-bootstrap";
 
 const saveKeyData = "MYKEY"
 const getAPIKey = (): string | undefined => {
@@ -62,7 +63,8 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     const [progress, setProgress] = useState<number>(0);
     const [showResults, setShowResults] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(0);
-    
+    const [errorMessage, setErrorMessage] = useState('');
+
 
     const nextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
@@ -118,8 +120,9 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 {role: "user", content: answerJson}], model: "gpt-4"})
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
+        setErrorMessage('');
         } catch (error) {
-            console.error("Error generating response:", error);
+            setErrorMessage('Error: API key is missing or invalid. Please check your configuration.');
         } finally {
             setLoading(false);// Set loading state back to false
             setProgress(100);
@@ -185,6 +188,11 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 <button type="button" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
                     Submit
                 </button>
+            )}
+            {errorMessage && (
+                    <Alert variant="danger">
+                    {errorMessage}
+                    </Alert>
             )}
             {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
             {loading && (

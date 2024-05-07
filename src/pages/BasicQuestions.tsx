@@ -31,6 +31,8 @@ interface BasicProps {
   handlePage: (page: string) => void;
 }
 
+
+
 const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [responses, setResponses] = useState<{ [key: string]: string }>({});
   const [progress, setProgress] = useState(0);
@@ -39,6 +41,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [quizResults, setQuizResults] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
  const [answered, setAnswered] = useState(false); 
+ const [errorMessage, setErrorMessage] = useState('');
+
 
  const images = [
     workTogether, alone, idea, help, counsel, organized, creative, good, handson, pressure
@@ -96,9 +100,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    setLoading(true); // Set loading state to true
-
+    setLoading(true);
     try {
         const answerJson = JSON.stringify(responses);
         const chatResponse = await openai.chat.completions.create({
@@ -109,13 +111,15 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
           model: "gpt-4"
         });
         const generatedResponse = chatResponse.choices[0].message.content;
-      setQuizResults(generatedResponse);
-      setSubmitted(true);
+        setQuizResults(generatedResponse);
+        setSubmitted(true);
+        setErrorMessage('');
     } catch (error) {
-      console.error("Error generating response:", error);
+        setErrorMessage('Error: API key is missing or invalid. Please check your configuration.');
+
     } finally {
        setLoading(false);// Set loading state back to false
-      setProgress(100);
+       setProgress(100);
 
     }
   };
@@ -169,7 +173,11 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
               Submit
             </Button>
           )}
-
+          {errorMessage && (
+            <Alert variant="danger">
+              {errorMessage}
+            </Alert>
+          )}
           <ProgressBar progress={progress} max={100} color="#2c6fbb" />
 
           {loading && (
