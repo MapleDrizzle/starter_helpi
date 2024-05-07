@@ -11,12 +11,10 @@ const BasicResults: React.FC<ResultsProps> = ({ responses, questions }) => {
   return (
     <div className="basicResults">
       <h1>Quiz Results</h1>
-      {questions.map((question, index) => (
-        <div key={index}>
+      
         
         </div>
-      ))}
-    </div>
+    
   );
 };
 

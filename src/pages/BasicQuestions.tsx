@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import BasicResults from "./BasicResults";
 import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
@@ -20,7 +20,9 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [submitted, setSubmitted] = useState(false);
   const [quizResults, setQuizResults] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+ const [answered, setAnswered] = useState(false); 
 
+ 
   const questions = [
     { question: "I like working in a team", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I prefer working alone", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
@@ -46,6 +48,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       ...prevResponses,
       [name]: value
     }));
+    setAnswered(true)
   };
 
   const handleNext = () => {
@@ -53,6 +56,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       setCurrentPage(currentPage + 1);
       const newProgress = ((currentPage + 1) * 100) / questions.length;
       setProgress(newProgress);
+      setAnswered(false)
+
     }
   };
 
@@ -61,6 +66,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       setCurrentPage(currentPage - 1);
       const newProgress = ((currentPage - 1) * 100) / questions.length;
       setProgress(newProgress);
+      setAnswered(true)
+
     }
   };
 
@@ -119,13 +126,18 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
                   </label>
                 ))}
               </div>
+              {!answered && (
+                <Alert variant="warning">
+                  <h5> Please complete this question before moving on.</h5>
+                </Alert>
+              )}
             </div>
           )}
 
           <Button type="button" id="Next" onClick={handlePrev} disabled={currentPage === 0}>
             Previous
           </Button>
-          <Button type="button" id="Next" onClick={handleNext} disabled={currentPage === questions.length - 1}>
+          <Button type="button" id="Next" onClick={handleNext} disabled={!answered || currentPage === questions.length - 1}>
             Next
           </Button>
           {currentPage === questions.length - 1 && (
