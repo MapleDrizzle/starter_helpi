@@ -5,7 +5,15 @@ import DetailedResults from './DetailedResults';
 import OpenAI from "openai";
 
 // ADD IN API KEY AGAIN! Right down here vv
-const openai = new OpenAI({apiKey: "", dangerouslyAllowBrowser: true});
+const saveKeyData = "MYKEY"
+const getAPIKey = (): string | undefined => {
+    const key = localStorage.getItem(saveKeyData);
+    return key ? JSON.parse(key) : null;
+}
+
+const apiKey = getAPIKey();
+
+const openai = new OpenAI({apiKey, dangerouslyAllowBrowser: true});
 
 interface DetailedProp {
     handlePage: (page: string) => void;
