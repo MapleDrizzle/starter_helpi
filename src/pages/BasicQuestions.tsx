@@ -4,8 +4,26 @@ import { Button, Alert } from "react-bootstrap";
 import BasicResults from "./BasicResults";
 import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
+import workTogether from "../images/homePageImages/workTogether.png";
+import alone from "../images/homePageImages/alone.png";
+import idea from "../images/homePageImages/idea.png";
+import help from "../images/homePageImages/help.png";
+import counsel from "../images/homePageImages/counsel.png";
+import organized from "../images/homePageImages/organized.png";
+import creative from "../images/homePageImages/creative.png";
+import good from "../images/homePageImages/good.png";
+import handson from "../images/homePageImages/handson.png";
+import pressure from "../images/homePageImages/pressure.png";
 
-const openai = new OpenAI({ apiKey: ""
+const saveKeyData = "MYKEY"
+const getAPIKey = (): string | undefined => {
+    const key = localStorage.getItem(saveKeyData);
+    return key ? JSON.parse(key) : null;
+}
+
+const apiKey = getAPIKey();
+
+const openai = new OpenAI({ apiKey
 , dangerouslyAllowBrowser: true });
 //const OPENAI_API_URL = "https://api.openai.com/v1/engines/davinci/completions";
 
@@ -22,7 +40,10 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [loading, setLoading] = useState(false);
  const [answered, setAnswered] = useState(false); 
 
- 
+ const images = [
+    workTogether, alone, idea, help, counsel, organized, creative, good, handson, pressure
+  ];
+
   const questions = [
     { question: "I like working in a team", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I prefer working alone", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
@@ -71,6 +92,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     }
   };
 
+  const currentImage = images[currentPage];
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -108,6 +131,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       ) : (
         <form onSubmit={handleSubmit}>
           <h1>Basic Quiz</h1>
+          <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
           {questions[currentPage] && (
             <div className="questions">
               <p>{questions[currentPage].question}</p>
