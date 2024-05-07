@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import { Button } from "react-bootstrap";
+import workTogether from "../images/homePageImages/workTogether.png";
+import alone from "../images/homePageImages/alone.png";
+import idea from "../images/homePageImages/idea.png";
+import help from "../images/homePageImages/help.png";
+import counsel from "../images/homePageImages/counsel.png";
+import organized from "../images/homePageImages/organized.png";
+import creative from "../images/homePageImages/creative.png";
+import good from "../images/homePageImages/good.png";
+import handson from "../images/homePageImages/handson.png";
+import pressure from "../images/homePageImages/pressure.png";
+import BasicResults from "./BasicResults";
 
 interface BasicProps {
   handlePage: (page: string) => void;
@@ -12,6 +23,10 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubmissionMessage, setShowSubmissionMessage] = useState(false);
 
+  const images = [
+    workTogether, alone, idea, help, counsel, organized, creative, good, handson, pressure
+  ];
+  
   const questions = [
     [ { question: "I like working in a team", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }],
       [{ question: "I prefer working alone", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }],
@@ -35,6 +50,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
           [  { question: "I excel in organizing and planning tasks or projects", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }],];
         
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(responses);
     const { name, value } = event.target;
     setResponses((prevResponses) => ({
       ...prevResponses,
@@ -63,6 +79,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     }
   };
 
+  const currentImage = images[currentPage];
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Form submitted with responses:", responses);
@@ -78,6 +96,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     <div className="basicForm">
       <form onSubmit={handleSubmit}>
         <h1>Basic Quiz</h1>
+        <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
         {questions[currentPage].map((questionObj, questionIndex) => (
           <div className="questions" key={questionIndex}>
             <p>{questionObj.question}</p>
@@ -116,6 +135,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       {showSubmissionMessage && (
         <div className="submission-message">
           <h2>Quiz submitted successfully!</h2>
+          <BasicResults responses={responses} questions={questions} formData={{}} />
           <Button onClick={handleCloseMessage} id = "Next">Close</Button>
         </div>
       )}

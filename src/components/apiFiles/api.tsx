@@ -56,6 +56,6 @@ export async function userRole(questions: string[], answers: string[]): Promise<
     const userData = await userResponse.json();
     // Extract generated results from GPT response
     const results = userData.choices[0].text.trim().split('\n');
-
+    console.log(results)
     return results;
 }
