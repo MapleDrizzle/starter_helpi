@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import DetailedResults from './DetailedResults';
-//import {userRole} from '../components/apiFiles/api'
+import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
+import { Alert } from "react-bootstrap";
 
-// ADD IN API KEY AGAIN! Right down here vv
-const openai = new OpenAI({apiKey: "", dangerouslyAllowBrowser: true});
+const saveKeyData = "MYKEY"
+const getAPIKey = (): string | undefined => {
+    const key = localStorage.getItem(saveKeyData);
+    return key ? JSON.parse(key) : null;
+}
+
+const apiKey = getAPIKey();
+
+const openai = new OpenAI({apiKey, dangerouslyAllowBrowser: true});
 
 interface DetailedProp {
     handlePage: (page: string) => void;
@@ -25,7 +33,6 @@ interface Responses {
 }
 
 const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
-    //let quizLength = 10;
     const questions: string[] = [
         "I am a very hands-on person.",
         "I work well under pressure.",
@@ -52,18 +59,18 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         question9: '',
         question10: ''
     });
-    //const [loading, setLoading] = useState<boolean>(false); // for the loading screen (in progress)
+    const [loading, setLoading] = useState<boolean>(false); // for the loading screen (in progress)
     const [progress, setProgress] = useState<number>(0);
     const [showResults, setShowResults] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(0);
+    const [errorMessage, setErrorMessage] = useState('');
+
 
     const nextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setProgress(progress + (100 / questions.length));
-            //quizLength = quizLength - 1;
         }
-        //console.log(quizLength);
     };
     const handlePrev = () => {
         if (currentQuestionIndex > 0) {
@@ -102,8 +109,8 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     };
 
     const handleSubmit = async () => {
-        //setLoading(true);
-        //quizLength = quizLength - 1;
+        setLoading(true);
+        try {
         let answerJson = JSON.stringify(responses);
         answerJson = "What career should I have given these questions and my corresponding answers?" + JSON.stringify(questions) + answerJson;
         console.log(answerJson);
@@ -113,95 +120,88 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 {role: "user", content: answerJson}], model: "gpt-4"})
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
-        //setLoading(false); 
-        console.log(chatResponse.choices[0].message.content);
-        console.log("Done");
-        /*try {
-            const results = await userRole(
-                Object.values(responses),
-                Object.keys(responses)
-            );
-            setQuizResults(results);
-            setShowResults(true);
+        setErrorMessage('');
         } catch (error) {
-            console.error("Error fetching quiz results:", error);
+            setErrorMessage('Error: API key is missing or invalid. Please check your configuration.');
+        } finally {
+            setLoading(false);// Set loading state back to false
+            setProgress(100);
         }
-        */
     };
-    /*
-    LOADING SCREEN FUNCTION (doesn't work)
-    const loadingScreen = () => {
-        if(quizLength === 0) {
-            if(loading && !showResults) {
-                <h1>Loading...</h1>
-            } else {
-                <DetailedResults quizResults={quizResults}/>
-            }
-        }
-        else {
-            return "";
-        }
-    }
-    */
+
     return (
         <div className="basicForm">
-            <form>
-                <h1>Detailed Quiz</h1>
-                <p>{questions[currentQuestionIndex]}</p>
-                {currentQuestionIndex < 3 && (
-                    <div className="radio-group">
-                        {['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].map(
-                            (label, index) => (
-                                <label className="radio-button" key={`question-${currentQuestionIndex}-${index}`}>
-                                    <input
-                                        type="radio"
-                                        name={`question${currentQuestionIndex + 1}`}
-                                        value={label}
-                                        checked={responses[`question${currentQuestionIndex + 1}` as keyof Responses] === `${label}`}
-                                        onChange={handleRadioChange}
-                                    />
-                                    <span className="custom-radio"></span>
-                                    {label}
-                                </label>
-                            )
-                        )}
-                    </div>
-                )}
-                {currentQuestionIndex >= 3 && (
-                    <div className="text-area">
-                        <textarea
-                            name={`question${currentQuestionIndex + 1}`}
-                            value={responses[`question${currentQuestionIndex + 1}` as keyof Responses]}
-                            onChange={handleTextChange}
-                            placeholder="Type your answer here..."
-                            rows={4}
-                            cols={50}
-                        ></textarea>
-                        {responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30 && (
-                            <p>Please provide a minimum of 30 characters.</p>
-                        )}
-                    </div>
-                )}
-                    {currentQuestionIndex !== questions.length - 1 && currentQuestionIndex !== 0 && (
-                    <button type="button" id="Next" onClick={handlePrev}>
-                        Previous
-                    </button>
-                )}
-                {currentQuestionIndex !== questions.length - 1 && (
-                    <button type="button" id="Next" onClick={nextQuestion} disabled={isNextButtonDisabled()}>
-                        Next
-                    </button>
-                )}
-                {currentQuestionIndex === questions.length - 1 && (
-                    <button type="button" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
-                        Submit
-                    </button>
-                )}
-                {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
-            </form>
-            
-            {/*quizLength === 0 ? (loading && !showResults ? <h1>Loading...</h1> : <DetailedResults quizResults={quizResults}/>) : ""*/}
-            {showResults && <DetailedResults quizResults={quizResults}/>}
+            {showResults ? (
+            <div className="submission-message">
+            <h2>Form submitted successfully!</h2>
+            <DetailedResults />
+            {quizResults && <p>Your Results:  {quizResults}</p>}
+        </div>
+        ) : (<form>
+            <h1>Detailed Quiz</h1>
+            <p>{questions[currentQuestionIndex]}</p>
+            {currentQuestionIndex < 3 && (
+                <div className="radio-group">
+                    {['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].map(
+                        (label, index) => (
+                            <label className="radio-button" key={`question-${currentQuestionIndex}-${index}`}>
+                                <input
+                                    type="radio"
+                                    name={`question${currentQuestionIndex + 1}`}
+                                    value={label}
+                                    checked={responses[`question${currentQuestionIndex + 1}` as keyof Responses] === `${label}`}
+                                    onChange={handleRadioChange}
+                                />
+                                <span className="custom-radio"></span>
+                                {label}
+                            </label>
+                        )
+                    )}
+                </div>
+            )}
+            {currentQuestionIndex >= 3 && (
+                <div className="text-area">
+                    <textarea
+                        name={`question${currentQuestionIndex + 1}`}
+                        value={responses[`question${currentQuestionIndex + 1}` as keyof Responses]}
+                        onChange={handleTextChange}
+                        placeholder="Type your answer here..."
+                        rows={4}
+                        cols={50}
+                    ></textarea>
+                    {responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30 && (
+                        <p>Please provide a minimum of 30 characters.</p>
+                    )}
+                </div>
+            )}
+                {currentQuestionIndex !== questions.length - 1 && currentQuestionIndex !== 0 && (
+                <button type="button" id="Next" onClick={handlePrev}>
+                    Previous
+                </button>
+            )}
+            {currentQuestionIndex !== questions.length - 1 && (
+                <button type="button" id="Next" onClick={nextQuestion} disabled={isNextButtonDisabled()}>
+                    Next
+                </button>
+            )}
+            {currentQuestionIndex === questions.length - 1 && (
+                <button type="button" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
+                    Submit
+                </button>
+            )}
+            {errorMessage && (
+                    <Alert variant="danger">
+                    {errorMessage}
+                    </Alert>
+            )}
+            {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
+            {loading && (
+            <div className="loading-screen">
+              <RingLoader color="#2c6fbb" size={60} />
+              <p>Loading...</p>
+            </div>
+          )}
+        </form>)}
         </div>
     );
 };
