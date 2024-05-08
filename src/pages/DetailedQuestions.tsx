@@ -3,6 +3,7 @@ import ProgressBar from "../components/progress-bar/progressBar";
 import DetailedResults from './DetailedResults';
 //import {userRole} from '../components/apiFiles/api'
 import OpenAI from "openai";
+import { Alert } from "react-bootstrap";
 
 // ADD IN API KEY AGAIN! Right down here vv
 const openai = new OpenAI({apiKey: "", dangerouslyAllowBrowser: true});
@@ -56,12 +57,14 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     const [progress, setProgress] = useState<number>(0);
     const [showResults, setShowResults] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(0);
+    const [answered, setAnswered] = useState(false); 
 
     const nextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setProgress(progress + (100 / questions.length));
             //quizLength = quizLength - 1;
+            setAnswered(false);
         }
         //console.log(quizLength);
     };
@@ -70,6 +73,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             setCurrentQuestionIndex(currentQuestionIndex - 1);
             setCurrentPage(currentPage - 1);
             setProgress(progress - (100 / questions.length - 1));
+            setAnswered(true);
         }
       };
         
@@ -81,6 +85,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             ...prevResponses,
             [name]: value,
         }));
+        setAnswered(true)
     };
 
     const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -90,9 +95,15 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             [name]: value,
         }));
     };
+    const isRadioButtonSelected = (questionIndex: number): boolean => {
+        // Check if any radio button in the specified question group is selected
+        return ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].some(
+            label => responses[`question${questionIndex}` as keyof Responses] === label
+        );
+    };
 
     const isNextButtonDisabled = () => {
-        if (currentQuestionIndex < 3) {
+        if (isRadioButtonSelected(currentQuestionIndex) === false) {
             return false;
         } else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 9) {
             return responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30;
@@ -164,9 +175,18 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                                     {label}
                                 </label>
                             )
+                            
                         )}
+                        
                     </div>
+                    
                 )}
+                {!answered && (
+                <Alert variant="warning">
+                    <h5> Please complete this question before moving on.</h5>
+                </Alert>
+                )}
+        
                 {currentQuestionIndex >= 3 && (
                     <div className="text-area">
                         <textarea
