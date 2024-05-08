@@ -98,15 +98,20 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         }));
     };
 
+    const isRadioButtonSelected = (questionIndex: number): boolean => {
+        const selectedValue = responses[`question${questionIndex + 1}` as keyof Responses];
+        return ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].includes(selectedValue);
+    };
+    
+
     const isNextButtonDisabled = () => {
         if (currentQuestionIndex < 3) {
-            return false;
-        } else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 9) {
+            return !isRadioButtonSelected(currentQuestionIndex);
+        } else { 
             return responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30;
-        } else {
-            return false;
         }
     };
+    
 
     const handleSubmit = async () => {
         setLoading(true);
@@ -158,6 +163,9 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                         )
                     )}
                 </div>
+            )}
+            {currentQuestionIndex < 3 && !isRadioButtonSelected(currentQuestionIndex) && (
+                <p className="select-answer-text">Please select an answer</p>
             )}
             {currentQuestionIndex >= 3 && (
                 <div className="text-area">
