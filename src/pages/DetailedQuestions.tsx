@@ -6,7 +6,7 @@ import OpenAI from "openai";
 import { Alert } from "react-bootstrap";
 
 //image imports
-import workTogether from "../images/homePageImages/workTogether.png";
+import motivates from "../images/homePageImages/help.png";
 import accomplishments from "../images/homePageImages/Accomplishments.png";
 import conflict from "../images/homePageImages/Conflicts.png";
 import pressure from "../images/homePageImages/pressure.png";
@@ -15,7 +15,7 @@ import handson from "../images/homePageImages/handson.png";
 import good from "../images/homePageImages/good.png";
 import complex from "../images/homePageImages/Complex.png";
 import organized from "../images/homePageImages/organized.png";
-
+import goals from "../images/homePageImages/Goals.png"
 
 const saveKeyData = "MYKEY"
 const getAPIKey = (): string | undefined => {
@@ -78,7 +78,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const images = [
-        handson, pressure, counsel, good, accomplishments, conflict, complex, organized
+        handson, pressure, counsel, good, accomplishments, conflict, complex, motivates, organized, goals
       ];
 
     const currentImage = images[currentPage];
@@ -205,7 +205,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 </button>
             )}
             {currentQuestionIndex === questions.length - 1 && (
-                <button type="button" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
+                <button type="button" id = "Next" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
                     Submit
                 </button>
             )}
