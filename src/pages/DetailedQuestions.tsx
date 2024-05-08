@@ -5,6 +5,18 @@ import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
 import { Alert } from "react-bootstrap";
 
+//image imports
+import motivates from "../images/homePageImages/help.png";
+import accomplishments from "../images/homePageImages/Accomplishments.png";
+import conflict from "../images/homePageImages/Conflicts.png";
+import pressure from "../images/homePageImages/pressure.png";
+import counsel from "../images/homePageImages/counsel.png";
+import handson from "../images/homePageImages/handson.png";
+import good from "../images/homePageImages/good.png";
+import complex from "../images/homePageImages/Complex.png";
+import organized from "../images/homePageImages/organized.png";
+import goals from "../images/homePageImages/Goals.png"
+
 const saveKeyData = "MYKEY"
 const getAPIKey = (): string | undefined => {
     const key = localStorage.getItem(saveKeyData);
@@ -65,10 +77,17 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [errorMessage, setErrorMessage] = useState('');
 
+    const images = [
+        handson, pressure, counsel, good, accomplishments, conflict, complex, motivates, organized, goals
+      ];
+
+    const currentImage = images[currentPage];
+
 
     const nextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setCurrentPage(currentPage + 1);
             setProgress(progress + (100 / questions.length));
         }
     };
@@ -144,6 +163,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         </div>
         ) : (<form>
             <h1>Detailed Quiz</h1>
+            <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
             <p>{questions[currentQuestionIndex]}</p>
             {currentQuestionIndex < 3 && (
                 <div className="radio-group">
@@ -193,7 +213,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 </button>
             )}
             {currentQuestionIndex === questions.length - 1 && (
-                <button type="button" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
+                <button type="button" id = "Next" onClick={handleSubmit} disabled={responses[`question${currentQuestionIndex + 1}` as keyof Responses].length < 30}>
                     Submit
                 </button>
             )}
