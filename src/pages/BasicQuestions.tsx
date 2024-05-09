@@ -47,7 +47,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [quizResults, setQuizResults] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
  const [answered, setAnswered] = useState(false); 
- const [errorMessage, setErrorMessage] = useState('');
+ const [error, setError] = useState(false);
 
 
  const images = [
@@ -83,12 +83,15 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   };
 
   const handleNext = () => {
-    if (currentPage < questions.length - 1) {
+    if ((currentPage < questions.length - 1) && localStorage.getItem(saveKeyData) !== null) {
       setCurrentPage(currentPage + 1);
       const newProgress = ((currentPage + 1) * 100) / questions.length;
       setProgress(newProgress);
       setAnswered(false)
 
+    }
+    else {
+        setError(true);
     }
   };
 
@@ -119,10 +122,6 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
         const generatedResponse = chatResponse.choices[0].message.content;
         setQuizResults(generatedResponse);
         setSubmitted(true);
-        setErrorMessage('');
-    } catch (error) {
-        setErrorMessage('Error: API key is missing or invalid. Please check your configuration.');
-
     } finally {
        setLoading(false);// Set loading state back to false
        setProgress(100);
@@ -179,9 +178,9 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
               Submit
             </Button>
           )}
-          {errorMessage && (
+          {error && (
             <Alert variant="danger">
-              {errorMessage}
+              <h5>Please enter an API key before continuing.</h5>
             </Alert>
           )}
           <ProgressBar progress={progress} max={100} color="#2c6fbb" />

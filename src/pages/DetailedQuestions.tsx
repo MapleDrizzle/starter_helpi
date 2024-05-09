@@ -75,7 +75,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     const [progress, setProgress] = useState<number>(0);
     const [showResults, setShowResults] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [error, setError] = useState(false);
 
     const images = [
         handson, pressure, counsel, good, accomplishments, conflict, complex, motivates, organized, goals
@@ -85,10 +85,13 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
 
 
     const nextQuestion = () => {
-        if (currentQuestionIndex < questions.length - 1) {
+        if ((currentQuestionIndex < questions.length - 1) && localStorage.getItem(saveKeyData) !== null) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setCurrentPage(currentPage + 1);
             setProgress(progress + (100 / questions.length));
+        }
+        else {
+            setError(true);
         }
     };
     const handlePrev = () => {
@@ -144,9 +147,6 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 {role: "user", content: answerJson}], model: "gpt-4"})
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
-        setErrorMessage('');
-        } catch (error) {
-            setErrorMessage('Error: API key is missing or invalid. Please check your configuration.');
         } finally {
             setLoading(false);// Set loading state back to false
             setProgress(100);
@@ -217,9 +217,9 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                     Submit
                 </button>
             )}
-            {errorMessage && (
+            {error && (
                     <Alert variant="danger">
-                    {errorMessage}
+                        <h5>Please enter an API key before continuing.</h5>
                     </Alert>
             )}
             {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
