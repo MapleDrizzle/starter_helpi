@@ -14,6 +14,12 @@ import creative from "../images/homePageImages/creative.png";
 import good from "../images/homePageImages/good.png";
 import handson from "../images/homePageImages/handson.png";
 import pressure from "../images/homePageImages/pressure.png";
+import plants from "../images/homePageImages/plants.png";
+import animals from "../images/homePageImages/animals.png";
+import chilis from "../images/homePageImages/chilis.png";
+import planning from "../images/homePageImages/planning.png";
+import tome from "../images/homePageImages/tome.png";
+import doctor from "../images/homePageImages/doctor.png";
 
 const saveKeyData = "MYKEY"
 const getAPIKey = (): string | undefined => {
@@ -45,7 +51,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
 
 
  const images = [
-    workTogether, alone, idea, help, counsel, organized, creative, good, handson, pressure
+    workTogether, alone, idea, help, counsel, organized, creative, good, handson, pressure, plants, tome, animals, chilis, doctor, planning
   ];
 
   const questions = [
@@ -60,9 +66,9 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     { question: "I am a hands-on person", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I work well under pressure", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I like taking care of plants", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
-    { question: "I am an organized person", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
+    { question: "I am comfortable using technology and learning new software", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I understand animals over humans", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
-    { question: "I prefer job roles that allow me to be creative and innovative.", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
+    { question: "I prefer working in a fast-paced environment where I have to adapt quickly", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I am interested in working in the healthcare industry", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
     { question: "I excel in organizing and planning tasks or projects", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }
   ];
