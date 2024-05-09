@@ -74,7 +74,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (75 ms)
+  ✕ renders learn react link (70 ms)
 
   ● renders learn react link
 
@@ -279,7 +279,7 @@ go away.[0m
 --------------------------------------------------|---------|----------|---------|---------|-------------------
 File                                              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                         |   31.83 |    12.35 |   27.86 |   33.05 |                   
+All files                                         |   30.98 |    11.82 |   26.15 |   32.11 |                   
  src                                              |   36.66 |    27.27 |   28.57 |   36.66 |                   
   App.tsx                                         |   57.89 |    42.85 |      40 |   57.89 | 17,25-36,42-46    
   index.tsx                                       |       0 |      100 |     100 |       0 | 7-19              
@@ -300,9 +300,10 @@ All files                                         |   31.83 |    12.35 |   27.86
   wave.tsx                                        |      50 |       25 |   33.33 |   52.38 | 21-32             
  src/components/progress-bar                      |   33.33 |        0 |       0 |   33.33 |                   
   progressBar.tsx                                 |   33.33 |        0 |       0 |   33.33 | 10-12             
- src/pages                                        |   16.37 |     3.27 |   11.53 |   16.81 |                   
-  BasicQuestions.tsx                              |   14.28 |     4.16 |    12.5 |   14.58 | 43-149            
+ src/pages                                        |   15.87 |     3.07 |      10 |   16.26 |                   
+  BasicQuestions.tsx                              |   14.28 |     3.84 |    12.5 |   14.58 | 43-180            
   BasicResults.tsx                                |      50 |      100 |       0 |      50 | 11                
+  BasicSuggestions.tsx                            |      10 |        0 |       0 |      10 | 8-32              
   Contact.tsx                                     |      50 |      100 |       0 |      50 | 11                
   DetailedQuestions.tsx                           |   12.28 |      2.7 |    8.33 |   12.72 | 48-172            
   DetailedResults.tsx                             |      50 |      100 |       0 |      50 | 7                 
@@ -311,5 +312,5 @@ All files                                         |   31.83 |    12.35 |   27.86
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.588 s
+Time:        3.629 s
 Ran all test suites.
