@@ -19,7 +19,7 @@ const CareerSuggestions: React.FC<CareerSuggestionsProps> = ({ results }) => {
 
     return (
       <div className="dropdown-item" onClick={toggleExpansion}>
-        {careerName}
+        <div style={{ marginBottom: "5px" }}>{careerName}</div>
         {expanded && <div className="description">{description}</div>}
       </div>
     );
