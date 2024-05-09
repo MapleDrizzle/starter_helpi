@@ -371,3 +371,38 @@ h2 {
     font-size: 105%;
     font-weight: bold;
   }
+/* CareerSuggestions.css */
+
+/* CareerSuggestions.css */
+
+.career-suggestions {
+    margin-top: 20px;
+  }
+  
+  .dropdown-item {
+    cursor: pointer;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #82c0d5;
+    color: #ffffff; /* Set text color to white */
+    font-family: Arial, sans-serif; /* Specify the font family */
+    font-weight: bold;
+
+  }
+  
+  .dropdown-item:hover {
+    background-color: #7fa4ce;
+  }
+  
+  .description {
+    margin-top: 5px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #2c6fbb; /* Set text color to dark gray */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Specify the font family */
+  }
+  
