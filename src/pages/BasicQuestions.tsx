@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import { Button, Alert } from "react-bootstrap";
 import BasicResults from "./BasicResults";
-import { RingLoader } from "react-spinners";
+//import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
 import workTogether from "../images/homePageImages/workTogether.png";
 import alone from "../images/homePageImages/alone.png";
@@ -21,6 +21,7 @@ import planning from "../images/homePageImages/planning.png";
 import tome from "../images/homePageImages/tome.png";
 import doctor from "../images/homePageImages/doctor.png";
 import CareerSuggestions from "./BasicSuggestions";
+import spin from "../images/homePageImages/spin.png";
 
 const saveKeyData = "MYKEY";
 const getAPIKey = (): string | undefined => {
@@ -123,6 +124,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     setLoading(true);
     try {
       const answerJson = JSON.stringify(responses);
+      console.log(answerJson);
       const chatResponse = await openai.chat.completions.create({
         messages: [
           { role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given a list of questions and corresponding record object with question answer key value pairs. Explain the choices as well! Only return responses, no questions.in addition, add the salary of each career listed"}, 
@@ -138,21 +140,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       setProgress(100);
     }
   };
-    // Function to handle click on dropdown item
-   
- /* const renderCareerSuggestions = (results: string) => {
-    const suggestions = results.split(/\d+\. /).filter(Boolean); // Split by numbering and filter out empty strings
-    return (
-      <ul className="career-suggestions" style={{ listStyleType: "circle", paddingLeft: "20px" }}>
-        {suggestions.map((suggestion, index) => (
-          <li key={index} style={{ marginBottom: "15px", fontSize: "20px", lineHeight: "1.75", color: "#2c6fbb" }}>
-            {suggestion.trim()}
-          </li>
-        ))}
-      </ul>
-    );
-  };
-  */
+
   
   return (
     <div className="basicForm">
@@ -217,9 +205,10 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
           <ProgressBar progress={progress} max={100} color="#2c6fbb" />
 
           {loading && (
-            <div className="loading-screen">
-              <RingLoader color="#2c6fbb" size={60} />
-              <p>Loading...</p>
+            <div><p>Answers submitted! Loading results...</p>
+                <div className="spinner">
+                    <img src={spin} alt="Otto the Otter Spinning Around"/>
+                </div>
             </div>
           )}
         </form>
