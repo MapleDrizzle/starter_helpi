@@ -150,7 +150,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       const chatResponse = await openai.chat.completions.create({
   
         messages: [
-          { role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given the list of questions and corresponding record object with question answer key value pairs. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results.  "}, 
+          { role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given the list of questions and corresponding record object with question answer key value pairs. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space. "}, 
             { role: "user", content: answerJson },
             {role: "user", content: questionJson}
         ],
