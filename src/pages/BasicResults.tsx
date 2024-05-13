@@ -7,7 +7,6 @@ interface ResultsProps {
 
 
 const BasicResults: React.FC<ResultsProps> = ({ responses, questions }) => {
-
   return (
     <div className="basicResults">
       <h1>Quiz Results</h1>

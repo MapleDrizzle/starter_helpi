@@ -65,6 +65,7 @@ function App() {
             {updatePageState()}
             {/*adds the ShorePath Logo*/}
             <img src={shorepathlogo} alt="ShorePath Logo" className="logo" />
+            {/*Footer*/}
             <div className = "footer">
             <div>
                 <Form>

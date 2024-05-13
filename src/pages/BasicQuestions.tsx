@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import { Button, Alert } from "react-bootstrap";
 import BasicResults from "./BasicResults";
-import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
 import workTogether from "../images/homePageImages/workTogether.png";
 import alone from "../images/homePageImages/alone.png";
@@ -21,6 +20,8 @@ import planning from "../images/homePageImages/planning.png";
 import tome from "../images/homePageImages/tome.png";
 import doctor from "../images/homePageImages/doctor.png";
 import CareerSuggestions from "./BasicSuggestions";
+import Loading from "./Loading";
+
 
 const saveKeyData = "MYKEY";
 const getAPIKey = (): string | undefined => {
@@ -39,6 +40,13 @@ interface BasicProps {
   handlePage: (page: string) => void;
 }
 
+export const topOfPage = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Smooth scrolling behavior
+    });
+}
+
 const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [responses, setResponses] = useState<{ [key: string]: string }>({});
   const [progress, setProgress] = useState(0);
@@ -48,8 +56,9 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [loading, setLoading] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [error, setError] = useState(false);
+  const [prev, setPrev] = useState(0);
 
-  const images = [
+  const images = [ // images to go with each question
     workTogether,
     alone,
     idea,
@@ -97,11 +106,24 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   };
 
   const handleNext = () => {
+    console.log(prev);
     if (currentPage < questions.length - 1 && localStorage.getItem(saveKeyData) !== null) {
-      setCurrentPage(currentPage + 1);
-      const newProgress = ((currentPage + 1) * 100) / questions.length;
-      setProgress(newProgress);
-      setAnswered(false);
+        if(prev === 0) { // the previous button was not clicked, next question
+            setCurrentPage(currentPage + 1);
+            const newProgress = ((currentPage + 1) * 100) / questions.length;
+            setProgress(newProgress);
+            setAnswered(false);
+        } else { // the previous button was clicked
+            setPrev(prev - 1); // subtracts answered questions until you hit a question that hasn't been answered yet
+            setCurrentPage(currentPage + 1);
+            const newProgress = ((currentPage + 1) * 100) / questions.length;
+            setProgress(newProgress);
+            if(prev > 0) { // next question already answered, no warning should appear
+                setAnswered(true);
+            } else {
+                setAnswered(false); // next question not answered yet, warning should appear
+            }
+        }
     } else {
       setError(true);
     }
@@ -113,10 +135,12 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       const newProgress = ((currentPage - 1) * 100) / questions.length;
       setProgress(newProgress);
       setAnswered(true);
+      if(answered) {
+        setPrev(prev + 1); // keeps track of how many times previous button was clicked so "unanswered" warning doesn't pop up when you click next
+      }
+      console.log(prev);
     }
   };
-
-  const currentImage = images[currentPage];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -138,21 +162,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       setProgress(100);
     }
   };
-    // Function to handle click on dropdown item
-   
- /* const renderCareerSuggestions = (results: string) => {
-    const suggestions = results.split(/\d+\. /).filter(Boolean); // Split by numbering and filter out empty strings
-    return (
-      <ul className="career-suggestions" style={{ listStyleType: "circle", paddingLeft: "20px" }}>
-        {suggestions.map((suggestion, index) => (
-          <li key={index} style={{ marginBottom: "15px", fontSize: "20px", lineHeight: "1.75", color: "#2c6fbb" }}>
-            {suggestion.trim()}
-          </li>
-        ))}
-      </ul>
-    );
-  };
-  */
+
+  const currentImage = images[currentPage];
   
   return (
     <div className="basicForm">
@@ -168,7 +179,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
             </div>
           )}
         </div>
-      ) : (
+      ) : (loading ? <Loading /> : (
         <form onSubmit={handleSubmit}>
           <h1>Basic Quiz</h1>
           <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
@@ -215,15 +226,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
             </Alert>
           )}
           <ProgressBar progress={progress} max={100} color="#2c6fbb" />
-
-          {loading && (
-            <div className="loading-screen">
-              <RingLoader color="#2c6fbb" size={60} />
-              <p>Loading...</p>
-            </div>
-          )}
         </form>
-      )}
+      ))}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/progress-bar/progressBar";
 import DetailedResults from './DetailedResults';
-import { RingLoader } from "react-spinners";
 import OpenAI from "openai";
 import { Alert } from "react-bootstrap";
+import Loading from "./Loading";
+
 
 //image imports
 import motivates from "../images/homePageImages/help.png";
@@ -157,11 +158,10 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         <div className="basicForm">
             {showResults ? (
             <div className="submission-message">
-            <h2>Form submitted successfully!</h2>
             <DetailedResults />
             {quizResults && <p>Your Results:  {quizResults}</p>}
         </div>
-        ) : (<form>
+        ) : (loading ? <Loading /> : (<form>
             <h1>Detailed Quiz</h1>
             <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
             <p>{questions[currentQuestionIndex]}</p>
@@ -223,13 +223,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                     </Alert>
             )}
             {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
-            {loading && (
-            <div className="loading-screen">
-              <RingLoader color="#2c6fbb" size={60} />
-              <p>Loading...</p>
-            </div>
-          )}
-        </form>)}
+        </form>))}
         </div>
     );
 };
