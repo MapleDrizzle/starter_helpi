@@ -47,7 +47,7 @@ const DropdownItem: React.FC<{ careerName: string; description: string }> = ({ c
   // Render the DropdownItem with clickable behavior to toggle description visibility
   return (
     <div className="dropdown-item" onClick={toggleExpansion}>
-      <div style={{ marginBottom: "5px" }}>{careerName}</div>
+      <div style={{ marginBottom: "0px" }}>{careerName}</div>
       {expanded && <div className="description">{description}</div>}
     </div>
   );
