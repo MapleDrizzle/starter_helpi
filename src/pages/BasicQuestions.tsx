@@ -23,6 +23,7 @@ import CareerSuggestions from "./BasicSuggestions";
 import Loading from "./Loading";
 
 
+
 const saveKeyData = "MYKEY";
 const getAPIKey = (): string | undefined => {
   const key = localStorage.getItem(saveKeyData);
@@ -41,12 +42,11 @@ interface BasicProps {
 }
 
 export const topOfPage = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Smooth scrolling behavior
-    });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scrolling behavior
+  });
 }
-
 const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [responses, setResponses] = useState<{ [key: string]: string }>({});
   const [progress, setProgress] = useState(0);
@@ -58,7 +58,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [error, setError] = useState(false);
   const [prev, setPrev] = useState(0);
 
-  const images = [ // images to go with each question
+  const images = [
     workTogether,
     alone,
     idea,
@@ -108,26 +108,25 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const handleNext = () => {
     console.log(prev);
     if (currentPage < questions.length - 1 && localStorage.getItem(saveKeyData) !== null) {
-        if(prev === 0) { // the previous button was not clicked, next question
-            setCurrentPage(currentPage + 1);
-            const newProgress = ((currentPage + 1) * 100) / questions.length;
-            setProgress(newProgress);
-            setAnswered(false);
-        } else { // the previous button was clicked
-            setPrev(prev - 1); // subtracts answered questions until you hit a question that hasn't been answered yet
-            setCurrentPage(currentPage + 1);
-            const newProgress = ((currentPage + 1) * 100) / questions.length;
-            setProgress(newProgress);
-            if(prev > 0) { // next question already answered, no warning should appear
-                setAnswered(true);
-            } else {
-                setAnswered(false); // next question not answered yet, warning should appear
-            }
-        }
-    } else {
-      setError(true);
+      if(prev === 0) {
+      setCurrentPage(currentPage + 1);
+      const newProgress = ((currentPage + 1) * 100) / questions.length;
+      setProgress(newProgress);
+      setAnswered(false);
+    } else { // the previous button was clicked
+      setPrev(prev - 1); // subtracts answered questions until you hit a question that hasn't been answered yet
+      setCurrentPage(currentPage + 1);
+      const newProgress = ((currentPage + 1) * 100) / questions.length;
+      setProgress(newProgress);
+      if(prev > 0) { // next question already answered, no warning should appear
+          setAnswered(true);
+      } else {
+          setAnswered(false); // next question not answered yet, warning should appear
+      }
     }
-  };
+  } else {
+    setError(true); 
+   } };
 
   const handlePrev = () => {
     if (currentPage > 0) {
@@ -138,8 +137,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       if(answered) {
         setPrev(prev + 1); // keeps track of how many times previous button was clicked so "unanswered" warning doesn't pop up when you click next
       }
-      console.log(prev);
-    }
+      console.log(prev);    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -147,10 +145,14 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     setLoading(true);
     try {
       const answerJson = JSON.stringify(responses);
+      console.log(responses); 
+      const questionJson = JSON.stringify(questions);
       const chatResponse = await openai.chat.completions.create({
+  
         messages: [
-          { role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given a list of questions and corresponding record object with question answer key value pairs. Explain the choices as well! Only return responses, no questions.in addition, add the salary of each career listed"}, 
-            { role: "user", content: answerJson }
+          { role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given the list of questions and corresponding record object with question answer key value pairs. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space. "}, 
+            { role: "user", content: answerJson },
+            {role: "user", content: questionJson}
         ],
         model: "gpt-4"
       });
@@ -162,8 +164,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       setProgress(100);
     }
   };
-
   const currentImage = images[currentPage];
+
   
   return (
     <div className="basicForm">
@@ -208,13 +210,16 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
               )}
             </div>
           )}
-
+          {currentPage !== 0 &&
           <Button type="button" id="Next" onClick={handlePrev} disabled={currentPage === 0}>
             Previous
           </Button>
+          }
+          {currentPage !== 15 && 
           <Button type="button" id="Next" onClick={handleNext} disabled={!answered || currentPage === questions.length - 1}>
             Next
           </Button>
+}
           {currentPage === questions.length - 1 && (
             <Button type="submit" id="Next">
               Submit
@@ -226,6 +231,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
             </Alert>
           )}
           <ProgressBar progress={progress} max={100} color="#2c6fbb" />
+
+      
         </form>
       ))}
     </div>
