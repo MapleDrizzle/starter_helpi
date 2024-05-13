@@ -404,21 +404,20 @@ h2 {
     color: #2c6fbb; /* Set text color to dark gray */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Specify the font family */
   }
-  
-  .spinner {
-    width: 60px;
-    height: 60px;
-    animation: spin 2s linear infinite;
+
+  .loader {
+    top: 15px;
+    left: 175px;
     position: absolute;
-    bottom: 100px;
-    left: 50%;
+    margin: 20px;
   }
 
-  @keyframes spin {
-    from {
-        transform: scale(0.25) rotate(0deg);
-    }
-    to {
-        transform: scale(0.25) rotate(-360deg);
-    }
+  .otter {
+    top: 50px;
+    left: 125px;
+    width: 400px;
+    height: auto;
+    position: absolute;
   }
+  
+  
