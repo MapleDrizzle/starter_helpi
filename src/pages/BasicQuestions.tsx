@@ -56,8 +56,9 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   const [loading, setLoading] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [error, setError] = useState(false);
+  const [prev, setPrev] = useState(0);
 
-  const images = [
+  const images = [ // images to go with each question
     workTogether,
     alone,
     idea,
@@ -105,11 +106,24 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
   };
 
   const handleNext = () => {
+    console.log(prev);
     if (currentPage < questions.length - 1 && localStorage.getItem(saveKeyData) !== null) {
-      setCurrentPage(currentPage + 1);
-      const newProgress = ((currentPage + 1) * 100) / questions.length;
-      setProgress(newProgress);
-      setAnswered(false);
+        if(prev === 0) { // the previous button was not clicked, next question
+            setCurrentPage(currentPage + 1);
+            const newProgress = ((currentPage + 1) * 100) / questions.length;
+            setProgress(newProgress);
+            setAnswered(false);
+        } else { // the previous button was clicked
+            setPrev(prev - 1); // subtracts answered questions until you hit a question that hasn't been answered yet
+            setCurrentPage(currentPage + 1);
+            const newProgress = ((currentPage + 1) * 100) / questions.length;
+            setProgress(newProgress);
+            if(prev > 0) { // next question already answered, no warning should appear
+                setAnswered(true);
+            } else {
+                setAnswered(false); // next question not answered yet, warning should appear
+            }
+        }
     } else {
       setError(true);
     }
@@ -121,10 +135,12 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       const newProgress = ((currentPage - 1) * 100) / questions.length;
       setProgress(newProgress);
       setAnswered(true);
+      if(answered) {
+        setPrev(prev + 1); // keeps track of how many times previous button was clicked so "unanswered" warning doesn't pop up when you click next
+      }
+      console.log(prev);
     }
   };
-
-  const currentImage = images[currentPage];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -147,6 +163,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     }
   };
 
+  const currentImage = images[currentPage];
   
   return (
     <div className="basicForm">
