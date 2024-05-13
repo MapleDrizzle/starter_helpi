@@ -38,7 +38,7 @@ const Contact: React.FC<ContactProp> = ({handlePage}) => {
             <div className="box">
                 <h2 >Rue Lin</h2>
                 <p style={{ color: "#2c6fbb"}}>
-                    Sophomore Computer Science Major 
+                    Sophomore Computer Science Major with interests in gaming, project management, and the arts. 
                 </p>
                 <br></br>
                 <p style={{ color: "#2c6fbb"}}>
