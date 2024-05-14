@@ -86,6 +86,38 @@
     height: auto;
     z-index:2;
 }
+.otto {
+    position: absolute;
+    top: 200px;
+    left:-300px;
+    width: 350px;
+    height: auto;
+    z-index:3;
+}
+.lottie {
+    position: absolute;
+    top: 200px;
+    left: 600px;
+    width: 335px;
+    height: auto;
+    z-index:3;
+}
+.cecil {
+    position: absolute;
+    top: 125px;
+    left: 700px;
+    width: 340px;
+    height: auto;
+    z-index:2;
+}
+.ray {
+    position: absolute;
+    width: 350px;
+    height: auto;
+    top: 125px;
+    left:-400px;
+    z-index:2;
+}
 /*Navigation Bar Styling*/
 
 
@@ -294,6 +326,7 @@ h2 {
     gap: 30px;
     align-items: center;
     z-index:1;
+    font-weight: bold;
   }
   .radio-button {
     display: flex;
@@ -328,6 +361,11 @@ h2 {
   
   .radio-button input[type="radio"]:checked + .custom-radio:after {
     display: block; /* Visible when checked */
+  }
+
+  .select-answer-text {
+    font-weight: bold;
+    font-size: 13px;
   }
 
 /* for textboxes*/
