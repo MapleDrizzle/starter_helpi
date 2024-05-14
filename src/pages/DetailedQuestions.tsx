@@ -4,6 +4,7 @@ import DetailedResults from './DetailedResults';
 import OpenAI from "openai";
 import { Alert } from "react-bootstrap";
 import Loading from "./Loading";
+import CareerSuggestions from "./BasicSuggestions";
 
 
 //image imports
@@ -144,7 +145,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         console.log(answerJson);
         const chatResponse = await openai.chat.completions.create(
             {messages: [ //edit system role to edit the output it gives you
-                {role: "system", content: "You are a career advisor. You will return a concrete list of career options given a list of questions and corresponding record object with question answer key value pairs. Only return responses, no questions."}, 
+                {role: "system", content: "You are a career advisor. You will return a concrete list of 10 career options given a list of questions and corresponding record object with question answer key value pairs. Only return responses, no questions. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space."}, 
                 {role: "user", content: answerJson}], model: "gpt-4"})
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
@@ -159,7 +160,14 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             {showResults ? (
             <div className="submission-message">
             <DetailedResults />
-            {quizResults && <p>Your Results:  {quizResults}</p>}
+            {quizResults && (
+            <div>
+              <h2> Click on the careers to find out more: </h2>
+              
+              <CareerSuggestions results={quizResults || ""} />
+             
+            </div>
+          )}
         </div>
         ) : (loading ? <Loading /> : (<form>
             <h1>Detailed Quiz</h1>
