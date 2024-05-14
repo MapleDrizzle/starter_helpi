@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/starter_helpi/static/css/main.17d9f846.css",
-    "main.js": "/starter_helpi/static/js/main.18f5aeba.js",
+    "main.css": "/starter_helpi/static/css/main.fc3fa18f.css",
+    "main.js": "/starter_helpi/static/js/main.570825ca.js",
     "static/js/453.bad6c33a.chunk.js": "/starter_helpi/static/js/453.bad6c33a.chunk.js",
     "static/media/Complex.png": "/starter_helpi/static/media/Complex.bf25f7c47dd12c6fc834.png",
     "static/media/Conflicts.png": "/starter_helpi/static/media/Conflicts.2499962ca604097608fa.png",
@@ -29,13 +29,17 @@
     "static/media/tome.png": "/starter_helpi/static/media/tome.543bb09cd1f6b329237b.png",
     "static/media/starfish.png": "/starter_helpi/static/media/starfish.6adf716111942d46b88b.png",
     "static/media/alone.png": "/starter_helpi/static/media/alone.be453ea55b67bc87af9d.png",
+    "static/media/ray.png": "/starter_helpi/static/media/ray.fe2f65db1de30e727831.png",
+    "static/media/lottie.png": "/starter_helpi/static/media/lottie.908d1f84f4e153d06fda.png",
+    "static/media/cecil.png": "/starter_helpi/static/media/cecil.6ee7fadfa74ca75aade6.png",
+    "static/media/otto.png": "/starter_helpi/static/media/otto.51ad09f6bff4f8e846b1.png",
     "index.html": "/starter_helpi/index.html",
-    "main.17d9f846.css.map": "/starter_helpi/static/css/main.17d9f846.css.map",
-    "main.18f5aeba.js.map": "/starter_helpi/static/js/main.18f5aeba.js.map",
+    "main.fc3fa18f.css.map": "/starter_helpi/static/css/main.fc3fa18f.css.map",
+    "main.570825ca.js.map": "/starter_helpi/static/js/main.570825ca.js.map",
     "453.bad6c33a.chunk.js.map": "/starter_helpi/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.17d9f846.css",
-    "static/js/main.18f5aeba.js"
+    "static/css/main.fc3fa18f.css",
+    "static/js/main.570825ca.js"
   ]
 }
