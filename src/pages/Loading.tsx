@@ -13,7 +13,7 @@ const Loading: React.FC = ( ) => {
         <img src={spin} className = "otter" alt="Otto the Otter Spinning Around"/>
       </div>
       
-    );
+    )
   };
   
   export default Loading;

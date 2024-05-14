@@ -145,7 +145,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         console.log(answerJson);
         const chatResponse = await openai.chat.completions.create(
             {messages: [ //edit system role to edit the output it gives you
-                {role: "system", content: "You are a career advisor. You will return a concrete list of 10 career options given a list of questions and corresponding record object with question answer key value pairs. Only return responses, no questions. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space."}, 
+                {role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given the list of questions and corresponding record object with question answer key value pairs. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space. "}, 
                 {role: "user", content: answerJson}], model: "gpt-4"})
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
@@ -172,7 +172,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         ) : (loading ? <Loading /> : (<form>
             <h1>Detailed Quiz</h1>
             <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
-            <p>{questions[currentQuestionIndex]}</p>
+            <p className = "questions">{questions[currentQuestionIndex]}</p>
             {currentQuestionIndex < 3 && (
                 <div className="radio-group">
                     {['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].map(
@@ -193,7 +193,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                 </div>
             )}
             {currentQuestionIndex < 3 && !isRadioButtonSelected(currentQuestionIndex) && (
-                <p className="select-answer-text">Please select an answer</p>
+                <p className="select-answer-text">Please complete this question before moving on.</p>
             )}
             {currentQuestionIndex >= 3 && (
                 <div className="text-area">
