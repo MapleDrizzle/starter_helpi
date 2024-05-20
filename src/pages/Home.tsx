@@ -6,6 +6,7 @@ interface HomeProp {
     handlePage: (page: string) => void;
 }
 
+// Home Page Format
 const home: React.FC<HomeProp> = ({handlePage}) => {
     return (
     <div>

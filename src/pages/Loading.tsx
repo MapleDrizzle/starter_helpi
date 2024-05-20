@@ -3,6 +3,7 @@ import spin from "../images/homePageImages/spin.png";
 import { PuffLoader } from "react-spinners";
 import {topOfPage} from "./BasicQuestions";
 
+//Loading Page
 const Loading: React.FC = ( ) => {
     topOfPage();
     return (
