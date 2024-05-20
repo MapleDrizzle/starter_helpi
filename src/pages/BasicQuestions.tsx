@@ -25,7 +25,10 @@ import CareerSuggestions from "./BasicSuggestions";
 import Loading from "./Loading"; //loading component for indicating API request status
 
 
-//API handling
+/*  Credit to OpenAI's ChatGPT for assistance with API handling
+ The function retrieves an API key stored in the browser's local storage and uses it to initialize an OpenAI client. 
+ If the API key is not found, it logs an error message. */ 
+
 const saveKeyData = "MYKEY";
 const getAPIKey = (): string | undefined => {
   const key = localStorage.getItem(saveKeyData);// Retrieve the API key from local storage
@@ -153,13 +156,17 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
 
     // Handler for submitting the quiz
 
+  // Credit to OpenAI's ChatGPT model for generating chat responses
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault();// Prevent default from submission behavior
     setLoading(true);
     try {
+          // Convert responses and questions objects to JSON strings
       const answerJson = JSON.stringify(responses);
       console.log(responses); 
       const questionJson = JSON.stringify(questions);
+          // Send request to OpenAI API's chat completion endpoint
+
       const chatResponse = await openai.chat.completions.create({
   
         messages: [
@@ -167,19 +174,20 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
             { role: "user", content: answerJson },
             {role: "user", content: questionJson}
         ],
-        model: "gpt-4"
+        model: "gpt-4" //  the language model (gpt-4) for generating the chat response
       });
       const generatedResponse = chatResponse.choices[0].message.content;// Extracting generated response
-      setQuizResults(generatedResponse);
-      setSubmitted(true);
+      setQuizResults(generatedResponse);    // Set the generated response as the quizResults state
+      setSubmitted(true);    // Set submitted state to true to indicate form submission
     } finally {
       setLoading(false);
       setProgress(100);
     }
   };
-    // Getting the current image based on the current page
 
-  const currentImage = images[currentPage];
+
+    
+  const currentImage = images[currentPage];// Getting the current image based on the current page
 
     // Rendering the quiz component
 
