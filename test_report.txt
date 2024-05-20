@@ -74,7 +74,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (79 ms)
+  ✕ renders learn react link (81 ms)
 
   ● renders learn react link
 
@@ -301,7 +301,7 @@ All files                                         |   27.42 |    10.28 |   22.66
  src/components/progress-bar                      |   33.33 |        0 |       0 |   33.33 |                   
   progressBar.tsx                                 |   33.33 |        0 |       0 |   33.33 | 10-12             
  src/pages                                        |   13.52 |     2.53 |     7.5 |   13.77 |                   
-  BasicQuestions.tsx                              |   12.12 |     2.77 |   11.11 |    12.3 | 45,51-193         
+  BasicQuestions.tsx                              |   12.12 |     2.77 |   11.11 |    12.3 | 48,56-209         
   BasicResults.tsx                                |      50 |      100 |       0 |      50 | 15                
   BasicSuggestions.tsx                            |   11.76 |        0 |       0 |   11.76 | 8-32,40-48        
   Contact.tsx                                     |      50 |      100 |       0 |      50 | 11                
@@ -314,5 +314,5 @@ All files                                         |   27.42 |    10.28 |   22.66
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.717 s
+Time:        3.952 s
 Ran all test suites.
