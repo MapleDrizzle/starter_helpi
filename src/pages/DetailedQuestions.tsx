@@ -19,7 +19,10 @@ import complex from "../images/homePageImages/Complex.png";
 import organized from "../images/homePageImages/organized.png";
 import goals from "../images/homePageImages/Goals.png"
 
-// API handling
+/*  Credit to OpenAI's ChatGPT for assistance with API handling
+ The function retrieves an API key stored in the browser's local storage and uses it to initialize an OpenAI client. 
+ If the API key is not found, it logs an error message. */ 
+
 const saveKeyData = "MYKEY"
 const getAPIKey = (): string | undefined => {
     const key = localStorage.getItem(saveKeyData);
@@ -137,6 +140,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         }
     };
     
+      // Credit to OpenAI's ChatGPT model for generating chat responses
     // Returns a text of results using all of the chosen answers
     const handleSubmit = async () => {
         setLoading(true);
@@ -147,7 +151,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         const chatResponse = await openai.chat.completions.create(
             {messages: [ // edit system role to edit the output it gives you
                 {role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given the list of questions and corresponding record object with question answer key value pairs. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space. "}, 
-                {role: "user", content: answerJson}], model: "gpt-4"})
+                {role: "user", content: answerJson}], model: "gpt-4"}) //  the language model (gpt-4) for generating the chat response
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
         } finally {
