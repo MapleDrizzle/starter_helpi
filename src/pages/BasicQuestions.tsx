@@ -3,6 +3,8 @@ import ProgressBar from "../components/progress-bar/progressBar";
 import { Button, Alert } from "react-bootstrap";
 import BasicResults from "./BasicResults";
 import OpenAI from "openai";
+
+//image imports 
 import workTogether from "../images/homePageImages/workTogether.png";
 import alone from "../images/homePageImages/alone.png";
 import idea from "../images/homePageImages/idea.png";
@@ -20,23 +22,24 @@ import planning from "../images/homePageImages/planning.png";
 import tome from "../images/homePageImages/tome.png";
 import doctor from "../images/homePageImages/doctor.png";
 import CareerSuggestions from "./BasicSuggestions";
-import Loading from "./Loading";
+import Loading from "./Loading"; //loading component for indicating API request status
 
 
-
+//API handling
 const saveKeyData = "MYKEY";
 const getAPIKey = (): string | undefined => {
-  const key = localStorage.getItem(saveKeyData);
-  return key ? JSON.parse(key) : null;
+  const key = localStorage.getItem(saveKeyData);// Retrieve the API key from local storage
+  return key ? JSON.parse(key) : null;// Parse and return the key, or return null if not found
 };
 
 const apiKey = getAPIKey();
 
 const openai = new OpenAI({
-  apiKey,
+  apiKey, // Use the retrieved API key
   dangerouslyAllowBrowser: true
 });
 
+// Interface defining the props for the BasicQuestions component
 interface BasicProps {
   handlePage: (page: string) => void;
 }
@@ -47,12 +50,14 @@ export const topOfPage = () => {
     behavior: 'smooth' // Smooth scrolling behavior
   });
 }
+
+//state changes
 const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
-  const [responses, setResponses] = useState<{ [key: string]: string }>({});
-  const [progress, setProgress] = useState(0);
+  const [responses, setResponses] = useState<{ [key: string]: string }>({});// keeps track of the user's responses
+  const [progress, setProgress] = useState(0);// for the progress bar
   const [currentPage, setCurrentPage] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [quizResults, setQuizResults] = useState<string | null>(null);
+  const [quizResults, setQuizResults] = useState<string | null>(null); 
   const [loading, setLoading] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [error, setError] = useState(false);
@@ -76,6 +81,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     doctor,
     planning
   ];
+  //quiz questions and options for users
 
   const questions = [
     { question: "I like working in a team", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] },
@@ -96,21 +102,25 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
     { question: "I excel in organizing and planning tasks or projects", options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'] }
   ];
 
+    // Handler for changes in radio button inputs
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target;// Destructuring name and value from the event target
     setResponses((prevResponses) => ({
       ...prevResponses,
-      [name]: value
+      [name]: value// Updating the responses state with the selected value
     }));
-    setAnswered(true);
+    setAnswered(true); // Marking the question as answered
   };
+
+
+    // Handler for moving to the next question
 
   const handleNext = () => {
     console.log(prev);
     if (currentPage < questions.length - 1 && localStorage.getItem(saveKeyData) !== null) {
       if(prev === 0) {
-      setCurrentPage(currentPage + 1);
-      const newProgress = ((currentPage + 1) * 100) / questions.length;
+      setCurrentPage(currentPage + 1); // Incrementing the current page
+      const newProgress = ((currentPage + 1) * 100) / questions.length;// Calculating new progress
       setProgress(newProgress);
       setAnswered(false);
     } else { // the previous button was clicked
@@ -125,9 +135,10 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       }
     }
   } else {
-    setError(true); 
+    setError(true); // Setting error if API key is missing
    } };
 
+     // Handler for moving to the previous question
   const handlePrev = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
@@ -139,6 +150,8 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       }
       console.log(prev);    }
   };
+
+    // Handler for submitting the quiz
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -156,7 +169,7 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
         ],
         model: "gpt-4"
       });
-      const generatedResponse = chatResponse.choices[0].message.content;
+      const generatedResponse = chatResponse.choices[0].message.content;// Extracting generated response
       setQuizResults(generatedResponse);
       setSubmitted(true);
     } finally {
@@ -164,12 +177,15 @@ const BasicQuestions: React.FC<BasicProps> = ({ handlePage }) => {
       setProgress(100);
     }
   };
+    // Getting the current image based on the current page
+
   const currentImage = images[currentPage];
 
-  
+    // Rendering the quiz component
+
   return (
     <div className="basicForm">
-      {submitted ? (
+      {submitted ? (// Once the loading screen is done, show the results page 
         <div className="submission-message">
           <BasicResults responses={responses} questions={questions} />
           {quizResults && (
