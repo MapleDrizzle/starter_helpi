@@ -2,7 +2,7 @@ import React from "react";
 import seaweed from "../images/homePageImages/seaweed.png";
 import seaweed2 from "../images/homePageImages/seaweed2.png";
 
-
+// Contact Page
 interface ContactProp {
     handlePage: (page: string) => void;
 }

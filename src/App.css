@@ -86,6 +86,7 @@
     height: auto;
     z-index:2;
 }
+/*Results Screen*/
 .otto {
     position: absolute;
     top: 200px;
@@ -118,9 +119,8 @@
     left:-400px;
     z-index:2;
 }
+
 /*Navigation Bar Styling*/
-
-
 .default button{
     border-radius: 20px;
     background-color: #2c6fbb;
@@ -152,7 +152,6 @@
 }
 
 /*Home Page Styling*/
-
 h1 {
 	font-size: 350%;
     text-align: center;
@@ -252,8 +251,8 @@ h2 {
     color: white;
     font-family: tahoma;
 }
-/* All for the buttons on home Page */
 
+/* All for the buttons on home Page */
 .rounded-button {
     border-radius: 20px; /* Adjust the value to change button roundness */
     border: none;
@@ -280,7 +279,6 @@ h2 {
 }
 
 /*BasicQuestions Page Styling*/
-
 #progressBar {
     width: 100%;
     background-color: gray;
@@ -344,23 +342,23 @@ h2 {
 
   .radio-button .custom-radio {
     display: inline-block;
-    height: 20px; /* Adjust size */
-    width: 20px; /* Adjust size */
-    background-color: #ccc; /* Default color */
-    border-radius: 50%; /* Circular shape */
-    border: 1px solid #aaa; /* Border */
+    height: 20px; 
+    width: 20px; 
+    background-color: #ccc; 
+    border-radius: 50%;
+    border: 1px solid #aaa; 
     position: relative;
   }
   
   .radio-button input[type="radio"]:checked + .custom-radio {
-    background-color: #2196F3; /* Color when checked */
-    border: 1px solid #2196F3; /* Border when checked */
+    background-color: #2196F3; 
+    border: 1px solid #2196F3; 
   }
   
  
   
   .radio-button input[type="radio"]:checked + .custom-radio:after {
-    display: block; /* Visible when checked */
+    display: block; 
   }
 
   .select-answer-text {
@@ -370,20 +368,20 @@ h2 {
 
 /* for textboxes*/
 .text-area textarea {
-    border: none; /* Remove default border */
-    padding: 10px; /* Add some padding */
-    font-size: 16px; /* Set font size */
-    outline: none; /* Remove default outline */
-    resize: none; /* Disable resizing */
-    position: relative; /* Required for positioning the squiggly line */
+    border: none; 
+    padding: 10px; 
+    font-size: 16px;
+    outline: none; 
+    resize: none; 
+    position: relative; 
   }
   
   /* Create a squiggly blue line outline effect */
   .text-area textarea:focus {
-    box-shadow: 0 0 0 2px transparent; /* Add transparent border to create space for the squiggly line */
+    box-shadow: 0 0 0 2px transparent; 
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' fill='none'%3E%3Cpath d='M0 5C10 10 20 0 30 5s20 5 30 0s20-5 30 0s20 5 30 0s10-10 20-5' stroke='%23008AFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-size: 100% 100%; /* Ensure the SVG pattern covers the entire textarea */
-    background-repeat: repeat-x; /* Repeat the pattern horizontally */
+    background-size: 100% 100%; 
+    background-repeat: repeat-x;
     background-position: 0 23px;
   }
 
@@ -409,9 +407,8 @@ h2 {
     font-size: 105%;
     font-weight: bold;
   }
+
 /* CareerSuggestions.css */
-
-
 .career-suggestions {
     margin-top: 20px;
   }
@@ -423,8 +420,8 @@ h2 {
     border-radius: 5px;
     margin-bottom: 10px;
     background-color: #82c0d5;
-    color: #ffffff; /* Set text color to white */
-    font-family: Arial, sans-serif; /* Specify the font family */
+    color: #ffffff; 
+    font-family: Arial, sans-serif; 
     font-weight: bold;
 
   }
@@ -439,8 +436,8 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-    color: #2c6fbb; /* Set text color to dark gray */
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Specify the font family */
+    color: #2c6fbb; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
   }
  .loader {
     top: 15px;

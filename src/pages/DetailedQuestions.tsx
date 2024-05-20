@@ -19,6 +19,7 @@ import complex from "../images/homePageImages/Complex.png";
 import organized from "../images/homePageImages/organized.png";
 import goals from "../images/homePageImages/Goals.png"
 
+// API handling
 const saveKeyData = "MYKEY"
 const getAPIKey = (): string | undefined => {
     const key = localStorage.getItem(saveKeyData);
@@ -45,7 +46,7 @@ interface Responses {
     question9: string;
     question10: string;
 }
-
+// Quiz questions
 const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
     const questions: string[] = [
         "I am a very hands-on person.",
@@ -59,9 +60,9 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         "How do you prioritize tasks and manage your time effectively?",
         "What are your long-term career goals?"
     ];
-    const [quizResults, setQuizResults] = useState<string | null>(null);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-    const [responses, setResponses] = useState<Responses>({
+    const [quizResults, setQuizResults] = useState<string | null>(null); // shows quiz results
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0); // handles whichever question is the current one
+    const [responses, setResponses] = useState<Responses>({ // keeps track of the user's responses
         question1: '',
         question2: '',
         question3: '',
@@ -74,10 +75,10 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         question10: ''
     });
     const [loading, setLoading] = useState<boolean>(false); // for the loading screen (in progress)
-    const [progress, setProgress] = useState<number>(0);
-    const [showResults, setShowResults] = useState<boolean>(false);
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [error, setError] = useState(false);
+    const [progress, setProgress] = useState<number>(0); // for the progress bar
+    const [showResults, setShowResults] = useState<boolean>(false); // for showing the results
+    const [currentPage, setCurrentPage] = useState<number>(0); // for showing the current page
+    const [error, setError] = useState(false); // for determining if the question has been answered or not
 
     const images = [
         handson, pressure, counsel, good, accomplishments, conflict, complex, motivates, organized, goals
@@ -85,7 +86,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
 
     const currentImage = images[currentPage];
 
-
+    // Handles going to the next question
     const nextQuestion = () => {
         if ((currentQuestionIndex < questions.length - 1) && localStorage.getItem(saveKeyData) !== null) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -96,6 +97,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             setError(true);
         }
     };
+    // Handles going to the previous question
     const handlePrev = () => {
         if (currentQuestionIndex > 0) {
             setCurrentQuestionIndex(currentQuestionIndex - 1);
@@ -103,17 +105,16 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             setProgress(progress - (100 / questions.length - 1));
         }
       };
-        
-
+    
+    // Handles which answer is chosen
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        
         const { name, value } = event.target;
         setResponses((prevResponses) => ({
             ...prevResponses,
             [name]: value,
         }));
     };
-
+    // Allows input of text 
     const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setResponses((prevResponses) => ({
@@ -121,13 +122,13 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             [name]: value,
         }));
     };
-
+    // Returns which option was selected
     const isRadioButtonSelected = (questionIndex: number): boolean => {
         const selectedValue = responses[`question${questionIndex + 1}` as keyof Responses];
         return ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].includes(selectedValue);
     };
     
-
+    // Stops user from continuing the quiz
     const isNextButtonDisabled = () => {
         if (currentQuestionIndex < 3) {
             return !isRadioButtonSelected(currentQuestionIndex);
@@ -136,7 +137,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         }
     };
     
-
+    // Returns a text of results using all of the chosen answers
     const handleSubmit = async () => {
         setLoading(true);
         try {
@@ -144,20 +145,20 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
         answerJson = "What career should I have given these questions and my corresponding answers?" + JSON.stringify(questions) + answerJson;
         console.log(answerJson);
         const chatResponse = await openai.chat.completions.create(
-            {messages: [ //edit system role to edit the output it gives you
+            {messages: [ // edit system role to edit the output it gives you
                 {role: "system", content: "You are a career advisor. You will return a concrete list of 4 career options given the list of questions and corresponding record object with question answer key value pairs. Separate the career name and description by ONLY a colon. Explain the choices as well! Only return responses, no questions.in addition, say the salary like this Average salary - $66,000. Do not put quotes around the results. Do not add extra white space. "}, 
                 {role: "user", content: answerJson}], model: "gpt-4"})
         setQuizResults(chatResponse.choices[0].message.content);
         setShowResults(true);
         } finally {
-            setLoading(false);// Set loading state back to false
+            setLoading(false); // Set loading state back to false
             setProgress(100);
         }
     };
 
     return (
         <div className="basicForm">
-            {showResults ? (
+            {showResults ? ( // Once the loading screen is done, show the results page 
             <div className="submission-message">
             <DetailedResults />
             {quizResults && (
@@ -169,8 +170,8 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
             </div>
           )}
         </div>
-        ) : (loading ? <Loading /> : (<form>
-            <h1>Detailed Quiz</h1>
+        ) : (loading ? <Loading /> : (<form> 
+            <h1>Detailed Quiz</h1> {/*Format of the Detailed Quiz*/} 
             <img src={currentImage} alt="Working together" style={{ maxWidth: "100%" }} />
             <p className = "questions">{questions[currentQuestionIndex]}</p>
             {currentQuestionIndex < 3 && (
@@ -230,6 +231,7 @@ const DetailedQuestions: React.FC<DetailedProp> = ({ handlePage }) => {
                         <h5>Please enter an API key before continuing.</h5>
                     </Alert>
             )}
+            {/*Progress Bar*/}
             {progress > 0 && progress < 100 && <ProgressBar progress={progress} max={100} color="#2c6fbb" />}
         </form>))}
         </div>
