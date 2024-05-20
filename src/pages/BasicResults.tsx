@@ -10,7 +10,7 @@ interface ResultsProps {
 }
 
 
-const BasicResults: React.FC<ResultsProps> = ({ responses, questions }) => {
+const BasicResults: React.FC<ResultsProps> = ({ responses, questions }) => {// Change responses to quizResults
 
   return (
     <div className="basicResults">
